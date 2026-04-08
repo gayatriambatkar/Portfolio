@@ -1,251 +1,260 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio</title>
-    <link rel="stylesheet" href="style.css">
-    <script src="https://kit.fontawesome.com/c44dbc2ee4.js" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gayatri Ambatkar | Software Engineer</title>
+  <script>
+    (() => {
+      const savedTheme = localStorage.getItem('portfolio-theme');
+      const theme = savedTheme === 'light' ? 'light' : 'dark';
+      document.documentElement.dataset.theme = theme;
+    })();
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-    <header class="header">
-        <a href="#" class="logo">The Web Artisan  </a>
+  <div class="site-shell">
+    <nav class="nav" id="nav">
+      <div class="nav-brand">
+        <span class="nav-logo">GA</span>
+        <span class="nav-status">status: active</span>
+      </div>
+      <div class="nav-links">
+        <a href="#projects">projects</a>
+        <a href="#thinking">thinking</a>
+        <a href="#depth">depth</a>
+        <a href="#experience">experience</a>
+        <a href="#contact">contact</a>
+      </div>
+      <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle light and dark theme">theme: dark</button>
+      <button class="nav-hamburger" id="hamburger" aria-label="Open navigation menu" aria-expanded="false" aria-controls="mobileMenu">
+        <span></span>
+        <span></span>
+      </button>
+    </nav>
 
-        <nav class="navbar">
-            <a href="#home" style="--i:1">Me</a>
-            <a href="#about" style="--i:2">About</a>
-            <a href="#services" style="--i:3">Services</a>
-            <a href="#skills" style="--i:4">Skills</a>
-            <a href="#portfolio" style="--i:4">Projects</a>
-            <a href="#contact" style="--i:5">Contact</a>
-        </nav>
-    </header>
-
-    <section class="home" id="home">
-        <div class="home-content">
-            <h3>Hello, It's Me ,</h3>
-            <h1>YUGAL DESHMUKH </h1>
-            <h3>And I'm a  <span class="text"></span></h3>
-            <p>"I'm Yugal Deshmukh, an Engineering student and passionate Web Developer. I love creating user-friendly websites and exploring new technologies."
-                <br></p>
-            <div class="home-sic">
-                <a href="#" style="--i:6"><i class="fa-brands fa-facebook-f fa-beat-fade"></i></a>
-                <a href="#" style="--i:7"><i class="fa-brands fa-instagram fa-beat-fade"></i></a>
-                <a href="https://www.linkedin.com/in/yugaldeshmukh" style="--i:8"><i class="fa-brands fa-linkedin fa-beat-fade"></i></a>
-                <a href="#" style="--i:9"><i class="fa-brands fa-twitter fa-beat-fade"></i></a>
-            </div>
-            <a href="https://www.linkedin.com/in/yugaldeshmukh" class="btn">More About Me</a>
-        </div>
-    </section>
-
-    <section class="about" id="about">
-        <div class="about-img">
-            <img src="" alt="">
-        </div>
-        <div class="about-text">
-            <h2>About <span>Me</span></h2>
-            <h4>Full Stack Developer</h4>
-            <p>
-                I am a passionate B.Tech computer student, specializing in web development, design, and programming. Throughout my journey, I have developed a strong foundation in creating engaging, functional websites and applications. I have successfully built projects like a Spotify clone, which replicates real-time music streaming functionality, and a medical plan detection system aimed at streamlining healthcare processes. Additionally, I’ve developed a smart attendance system based on IoT, demonstrating my ability to integrate advanced technologies into practical solutions. My expertise lies in front-end development, UI/UX design, and utilizing modern web technologies to bring creative ideas to life. I thrive on turning complex challenges into intuitive, user-centered solutions.
-            </p>
-
-            <a href="https://www.linkedin.com/in/yugaldeshmukh" class="btn">More About Me</a>
-        </div>
-    </section>
-
-    <section>
-        <div class="services" id="services">
-            <div class="container">
-                <h1 class="sub-title">My <span>Services</span></h1>
-                <div class="services-list">
-                    <div>
-                        <i class="fa-solid fa-code fa-beat" style="color: #00eeff;"></i>
-                        <h2>Custom Website Development</h2>
-                        <p> Offering tailored web development services to build responsive, functional, and visually appealing websites using HTML5, CSS3, JavaScript, and Bootstrap.</p>
-                        <a href="Default.html" class="read">Read More</a>
-                    </div>
-                    <div>
-                        <i class="fa-solid fa-crop-simple fa-beat" style="color: #00eeff;"></i>
-                        <h2>UI/UX Design and Optimization</h2>
-                        <p>Specializing in designing user-friendly interfaces and improving the user experience, ensuring websites are intuitive and engaging.</p>
-                        <a href="Default.html" class="read">Read More</a>
-                    </div>
-                    <div>
-                        <i class="fa-brands fa-app-store fa-beat" style="color: #00eeff;"></i>
-                        <h2>IoT-Based System Integration</h2>
-                        <p>Leveraging your experience with IoT to create innovative systems like attendance management or other IoT-driven applications that bridge physical devices with web platforms.</p>
-                        <a href="Default.html" class="read">Read More</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <h1 class="sub-title">My <span>Skills</span></h1>
-    <section>
-        <div class="container1" id="skills">
-            <h1 class="heading1">Technical Skills</h1>
-            <div class="Technical-bars">
-                <div class="bar"><i style="color: #c95d2e;" class="fa-brands fa-html5"></i>
-                    <div class="info">
-                        <span>HTML</span>
-                    </div>
-                    <div class="progress-line html">
-                        <span></span>
-                    </div>
-                </div>
-                <div class="bar"><i style="color: #147bbc;" class="fa-brands fa-css3-alt"></i>
-                    <div class="info">
-                        <span>CSS</span>
-                    </div>
-                    <div class="progress-line css">
-                        <span></span>
-                    </div>
-                </div>
-                <div class="bar"><i style="color: #b0bc1e;" class="fa-brands fa-square-js"></i>
-                    <div class="info">
-                        <span>JavaScript</span>
-                    </div>
-                    <div class="progress-line javascript">
-                        <span></span>
-                    </div>
-                </div>
-                <div class="bar"><i style="color: #c32ec9;" class="fa-brands fa-python"></i>
-                    <div class="info">
-                        <span>Python</span>
-                    </div>
-                    <div class="progress-line python">
-                        <span></span>
-                    </div>
-                </div>
-                <div class="bar"><i style="color: #69bcbc;" class="fa-brands fa-react"></i>
-                    <div class="info">
-                        <span>React</span>
-                    </div>
-                    <div class="progress-line react">
-                        <span></span>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="container1">
-            <h1 class="heading1">Professional Skills</h1>
-            <div class="radial-bars">
-            <div class="radial-bar">
-                <svg x="0px" y="0px" viewBox="0 0 200 200">
-                    <circle class="progress-bar" cx="100" cy="100" r="80"></circle>
-                    <circle class="path path-1" cx="100" cy="100" r="80"></circle>
-                </svg>
-                <div class="percentage">90%</div>
-                <div class="test">Creativity</div>
-            </div>
-            <div class="radial-bar">
-                <svg x="0px" y="0px" viewBox="0 0 200 200">
-                    <circle class="progress-bar" cx="100" cy="100" r="80"></circle>
-                    <circle class="path path-2" cx="100" cy="100" r="80"></circle>
-                </svg>
-                <div class="percentage">65%</div>
-                <div class="test">Communication</div>
-            </div>
-            <div class="radial-bar">
-                <svg x="0px" y="0px" viewBox="0 0 200 200">
-                    <circle class="progress-bar" cx="100" cy="100" r="80"></circle>
-                    <circle class="path path-3" cx="100" cy="100" r="80"></circle>
-                </svg>
-                <div class="percentage">75%</div>
-                <div class="test">Problem Solving</div>
-            </div>
-            <div class="radial-bar">
-                <svg x="0px" y="0px" viewBox="0 0 200 200">
-                    <circle class="progress-bar" cx="100" cy="100" r="80"></circle>
-                    <circle class="path path-4" cx="100" cy="100" r="80"></circle>
-                </svg>
-                <div class="percentage">90%</div>
-                <div class="test">Teamwork</div>
-            </div>
-            </div>
-        </div>
-    </section>
-
-    <section>
-        <div id="portfolio" id="project">
-            <div class="main-text">
-                <h2>Latest <span>Project</span></h2>
-
-                <div class="portfolio-content">
-                    <div class="row">
-                        <img src="images/spotify_1.webp" alt="">
-                        <div class="layer">
-                            <h5>Web Development: Spotify Clone</h5>
-                            <p>A modern and responsive Spotify clone that replicates the look and feel of the original platform, designed for seamless music streaming functionality.
-
-                                Technologies Used:
-                                HTML5: For the structure and semantic markup.
-                                CSS3: For styling and layout.
-                                Bootstrap: To enhance responsiveness and create a modern UI.
-                                </p>
-                            <a href="Default.html"><i class="fa-solid fa-up-right-from-square fa-beat"></i></a>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <img src="images/medical plan _2.webp" alt="">
-                        <div class="layer">
-                            <h5>AI-Powered Medicinal Plant Identification System</h5>
-                            <p>The Medical Plan Detection System leverages AI to recommend optimal medical plans by analyzing patient data, medical history, and insurance policies. It enhances decision-making, reduces administrative tasks, and ensures accurate plan selection.</p>
-                            <a href="Default.html"><i class="fa-solid fa-up-right-from-square fa-beat"></i></a>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <img src="images/iot_3.webp" alt="">
-                        <div class="layer">
-                            <h5>IoT-Based Biometric Attendance System</h5>
-                            <p>The IoT-Based Biometric Attendance System offers a smart, automated solution for tracking attendance in institutions and workplaces. It uses biometric technology, such as fingerprint or facial recognition, to authenticate users and record attendance in real-time. Integrated with IoT devices, the system ensures seamless connectivity, cloud storage, and remote access, while eliminating manual errors and enhancing accuracy.</p>
-                            <a href="Default.html"><i class="fa-solid fa-up-right-from-square fa-beat"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="contact" id="contact">
-        <div class="contact-text">
-            <h2>Contact <span>Me</span></h2>
-            <h4>Let's work Together</h4>
-            <p>Web developer skilled in building user-friendly websites and apps. Experienced in music streaming, healthcare systems, and IoT integration. Expertise in front-end development, UI/UX design, and modern web technologies.</p>
-            <div class="contact-list">
-              <a href="mailto:yugaldeshmukh03@gmail.com"> <li><i class="fa-sharp fa-solid fa-paper-plane"></i> yugaldeshmukh03@gmail.com</li></a> 
-              <a href="tel:+919921053530"> <li><i class="fa-sharp fa-solid fa-phone"></i>+919921053530</li></a> 
-            </div>
-            <div class="contact-icons">
-                <a href="#"><i class="fa-brands fa-facebook fa-beat-fade"></i></a>
-                <a href="#"><i class="fa-brands fa-twitter fa-shake"></i></a>
-                <a href="#"><i class="fa-brands fa-instagram fa-beat-fade"></i></a>
-                <a href="https://www.linkedin.com/in/yugaldeshmukh"><i class="fa-brands fa-linkedin fa-shake"></i></a>
-            </div>
-        </div>
-
-        <div class="contact-form">
-            <form action="Thanks.html" method="post">
-                <input type="" placeholder="Enter Your Name" required>
-                <input type="email" placeholder="Enter Your Email" required>
-
-                <input type="" placeholder="Enter Your Subject">
-                <textarea name="" id="" cols="40" rows="10" placeholder="
-                Enter Your Message"></textarea>
-                <input type="submit" value="submit" class="send">
-            </form>
-        </div>
-    </section>
-
-    <div class="last-text">
-        <p>© 2025 Yugal Deshmukh ♡ All Rights Reserved.</p>
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="#projects" class="mobile-link">projects</a>
+      <a href="#thinking" class="mobile-link">thinking</a>
+      <a href="#depth" class="mobile-link">depth</a>
+      <a href="#experience" class="mobile-link">experience</a>
+      <a href="#contact" class="mobile-link">contact</a>
     </div>
-    <a href="#" class="top"><i class="fa-solid fa-arrow-up fa-beat-fade"></i></a>
 
+    <main>
+      <section class="hero section" id="hero">
+        <div class="hero-grid">
+          <div class="hero-copy reveal">
+            <div class="section-kicker">/workspace/home</div>
+            <div class="hero-name">Gayatri Ambatkar</div>
+            <div class="hero-role">Software Engineer</div>
+            <!-- <h1 class="hero-title">I build systems that <span class="hero-accent">stay clear under pressure</span><span class="caret" aria-hidden="true"></span></h1> -->
+            <p class="hero-summary">Full-stack software developer building SaaS products, automation systems, admin panels, client panels, and AI-assisted tools with end-to-end ownership across system design, backend, frontend, deployment, and optimization.</p>
+            <div class="hero-meta">
+              <span>Nagpur, India</span>
+              <span>MERN, Node.js, Electron, automation</span>
+              <span>open to engineering roles</span>
+            </div>
+            <div class="hero-focus">
+              <span class="focus-label">current_focus</span>
+              <span class="focus-rotating" id="focusRotating">building software teams can run, debug, and trust</span>
+            </div>
+            <div class="hero-actions">
+              <a class="button button-primary" href="#projects">open case studies</a>
+              <a class="button button-secondary" href="https://drive.google.com/file/d/1nGL78QnLnvSBzmRJ2utNC_tAgc_xdMVa/view?usp=sharing" target="_blank" rel="noopener">view resume</a>
+              <a class="button button-secondary" href="#contact">start conversation</a>
+            </div>
+            <div class="hero-signal-grid">
+              <article class="signal-card"><div class="signal-label">flagship</div><div class="signal-value">Sezone</div><p>Built and continue to manage the SaaS platform end to end across system design, frontend, backend, deployment, and optimization.</p></article>
+              <article class="signal-card"><div class="signal-label">reliability</div><div class="signal-value">99%</div><p>Pipeline reliability after moving Sezone from fragile single-process execution to queue-based workers.</p></article>
+              <article class="signal-card"><div class="signal-label">delivery</div><div class="signal-value">6 hrs to 30 min</div><p>Reduced heavy RPACPC processing time with automation, recovery handling, and operator-facing tooling.</p></article>
+            </div>
+          </div>
 
-    <script src="script.js"></script>
+          <aside class="hero-terminal reveal" aria-label="Terminal introduction">
+            <div class="panel-topbar">
+              <span class="window-dot dot-red"></span>
+              <span class="window-dot dot-amber"></span>
+              <span class="window-dot dot-green"></span>
+              <span class="panel-title">engineering-priorities.md</span>
+            </div>
+            <div class="terminal-body">
+              <div class="terminal-output">
+                <div class="output-block"><span class="output-label">focus</span><span class="output-value">SaaS systems, automation platforms, admin panels, AI-assisted tools</span></div>
+                <div class="output-block"><span class="output-label">working_style</span><span class="output-value">high ownership, production delivery, maintainable execution</span></div>
+                <div class="output-block"><span class="output-label">priority</span><span class="output-value">software that solves real business workflows and stays dependable after handoff</span></div>
+              </div>
+              <div class="log-stream">
+                <div class="log-line log-info">Built Sezone as a SaaS product from scratch and continue to manage it in production.</div>
+                <div class="log-line log-debug">Contributed to live panels, utilities, AI products, and internal automation systems at AZlogics.</div>
+                <div class="log-line log-info">Prefer systems the team can operate confidently instead of systems that only look good in demos.</div>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <section class="section" id="projects">
+        <div class="section-label">// Projects</div>
+        <div class="workspace reveal">
+          <div class="workspace-sidebar">
+            <div class="workspace-heading">repo explorer</div>
+            <div class="project-tabs" role="tablist" aria-label="Project case studies">
+              <button class="project-tab is-active" type="button" role="tab" aria-selected="true" aria-controls="project-panel-1" id="project-tab-1" data-project-target="project-panel-1"><span class="tab-index">01</span><span class="tab-copy"><span class="tab-title">sezone.system</span><span class="tab-meta">mern / aws / docker / rbac</span></span></button>
+              <button class="project-tab" type="button" role="tab" aria-selected="false" aria-controls="project-panel-2" id="project-tab-2" data-project-target="project-panel-2"><span class="tab-index">02</span><span class="tab-copy"><span class="tab-title">rpacpc.desktop</span><span class="tab-meta">electron / node / automation</span></span></button>
+              <button class="project-tab" type="button" role="tab" aria-selected="false" aria-controls="project-panel-3" id="project-tab-3" data-project-target="project-panel-3"><span class="tab-index">03</span><span class="tab-copy"><span class="tab-title">neurite.ai</span><span class="tab-meta">python / rag / llm / retrieval</span></span></button>
+              <button class="project-tab" type="button" role="tab" aria-selected="false" aria-controls="project-panel-4" id="project-tab-4" data-project-target="project-panel-4"><span class="tab-index">04</span><span class="tab-copy"><span class="tab-title">moonsez.ops</span><span class="tab-meta">node / cron / rpa / leadership</span></span></button>
+            </div>
+          </div>
+          <div class="workspace-main">
+            <div class="project-mobile-nav" role="tablist" aria-label="Mobile project navigation">
+              <button class="project-mobile-tab is-active" type="button" aria-selected="true" aria-controls="project-panel-1" data-project-target="project-panel-1">01 Sezone</button>
+              <button class="project-mobile-tab" type="button" aria-selected="false" aria-controls="project-panel-2" data-project-target="project-panel-2">02 RPACPC</button>
+              <button class="project-mobile-tab" type="button" aria-selected="false" aria-controls="project-panel-3" data-project-target="project-panel-3">03 Neurite</button>
+              <button class="project-mobile-tab" type="button" aria-selected="false" aria-controls="project-panel-4" data-project-target="project-panel-4">04 Moon SEZ</button>
+            </div>
+            <article class="project-panel is-active reveal" id="project-panel-1" role="tabpanel" aria-labelledby="project-tab-1">
+              <div class="panel-topbar"><span class="window-dot dot-red"></span><span class="window-dot dot-amber"></span><span class="window-dot dot-green"></span><span class="panel-title">sezone.case-study.ts</span></div>
+              <div class="project-panel-body">
+                <header class="project-panel-header"><div><div class="project-kicker">saas platform | end-to-end ownership</div><h2>Sezone</h2></div><div class="project-status">status: live</div></header>
+                <p class="project-summary">Sezone is the strongest example of my ownership as a software developer. I built and continue to manage the SaaS platform across system design, backend architecture, frontend development, admin panel, client panel, deployment, optimization, and ongoing maintenance.</p>
+                <div class="case-study-grid">
+                  <section class="case-card"><div class="case-label">problem</div><p>The business needed a SaaS platform that could support multiple tenants, separate operational concerns cleanly, and give both admins and clients a usable system instead of disconnected internal scripts.</p></section>
+                  <section class="case-card"><div class="case-label">context</div><p>I owned the build across the full stack: system design, backend, frontend, deployment, website work, optimization, and ongoing maintenance. The platform had to support 200,000+ records per run, 1,400+ credentials, concurrent schedules, and production troubleshooting.</p></section>
+                  <section class="case-card"><div class="case-label">approach</div><p>I designed the system around tenant-aware scheduling, queue-based execution, and operational clarity. The goal was not just to ship features, but to build something the team could run, debug, and trust under live conditions.</p></section>
+                  <section class="case-card"><div class="case-label">architecture</div><ul class="architecture-list"><li>Designed backend services and async workers to isolate failures and improve throughput.</li><li>Built the frontend surfaces, admin panel, and client-facing flows needed for real-world use.</li><li>Standardized deployments with Docker, Nginx, and PM2 to reduce manual dependency.</li><li>Maintained and optimized the product as a live SaaS application instead of treating launch as the finish line.</li></ul></section>
+                  <section class="case-card"><div class="case-label">proof</div><p>Live links: <a href="https://www.sezone.in/" target="_blank" rel="noopener">website</a> and <a href="https://moon.sezone.in" target="_blank" rel="noopener">Moon Sezone</a>.</p></section>
+                  <section class="case-card"><div class="case-label">outcome</div><p>Sezone reached about 99% pipeline reliability, improved deployment speed by roughly 60%, and gave the business a maintainable product that I continue to operate and improve.</p></section>
+                  <section class="case-card case-card-full"><div class="case-label">reflection</div><p>This project proved that my best work is in high-ownership environments where I can shape the system from first design decisions through production maintenance and optimization.</p></section>
+                </div>
+              </div>
+            </article>
+            <article class="project-panel reveal" id="project-panel-2" role="tabpanel" aria-labelledby="project-tab-2" hidden>
+              <div class="panel-topbar"><span class="window-dot dot-red"></span><span class="window-dot dot-amber"></span><span class="window-dot dot-green"></span><span class="panel-title">rpacpc.case-study.ts</span></div>
+              <div class="project-panel-body">
+                <header class="project-panel-header"><div><div class="project-kicker">verification workflows | panels + utility</div><h2>RPACPC Suite</h2></div><div class="project-status">status: live</div></header>
+                <p class="project-summary">I contributed across the RPACPC ecosystem: admin panel work, client panel workflow automation, backend verification APIs, and the Electron desktop utility used for internal operational tasks.</p>
+                <div class="case-study-grid">
+                  <section class="case-card"><div class="case-label">problem</div><p>The workflow depended on repetitive verification steps, unstable sessions, and slow manual processing through operational portals. Teams needed both automation and visibility.</p></section>
+                  <section class="case-card"><div class="case-label">context</div><p>My work here included backend automation, request and response validation, client-side workflow improvements, and direct ownership of the Electron utility used internally by teams handling repetitive processes.</p></section>
+                  <section class="case-card"><div class="case-label">approach</div><p>I treated usability and reliability as part of correctness. That meant improving verification APIs, making panel workflows smoother, and keeping the desktop utility understandable for non-technical operators.</p></section>
+                  <section class="case-card"><div class="case-label">architecture</div><ul class="architecture-list"><li>Improved admin-side API verification flows and validation behavior.</li><li>Worked on client-side workflow automation and API integrations.</li><li>Maintained and enhanced the Electron utility used for operational execution.</li><li>Used retries, recovery thinking, and visible progress to reduce failure ambiguity.</li></ul></section>
+                  <section class="case-card"><div class="case-label">proof</div><p>Live links: <a href="https://console.rpacpc.com/" target="_blank" rel="noopener">client panel</a> and <a href="https://adminv2.rpacpc.com/" target="_blank" rel="noopener">admin panel</a>.</p></section>
+                  <section class="case-card"><div class="case-label">outcome</div><p>The suite reduced manual effort sharply, improved verification speed, and helped move heavy operational batches from roughly 6 to 8 hours to under 30 minutes in large runs.</p></section>
+                  <section class="case-card case-card-full"><div class="case-label">reflection</div><p>This work made it clear that automation has to show progress, errors, and recovery state. A fast tool that operators cannot trust still fails in production.</p></section>
+                </div>
+              </div>
+            </article>
+            <article class="project-panel reveal" id="project-panel-3" role="tabpanel" aria-labelledby="project-tab-3" hidden>
+              <div class="panel-topbar"><span class="window-dot dot-red"></span><span class="window-dot dot-amber"></span><span class="window-dot dot-green"></span><span class="panel-title">neurite.case-study.ts</span></div>
+              <div class="project-panel-body">
+                <header class="project-panel-header"><div><div class="project-kicker">medical AI | retrieval and validation</div><h2>Neurite AI</h2></div><div class="project-status">status: active</div></header>
+                <p class="project-summary">At Neurite AI, I contributed to a medical-domain AI product where trustworthy responses depended on the quality of retrieval, grounding, data preparation, and evaluation rather than model confidence alone.</p>
+                <div class="case-study-grid">
+                  <section class="case-card"><div class="case-label">problem</div><p>Medical users needed reliable answers from large document sets, but generic LLM behavior was too risky unless responses stayed grounded enough to verify.</p></section>
+                  <section class="case-card"><div class="case-label">context</div><p>I worked on data preparation, validation, retrieval quality, and model-support tasks for a domain where correctness matters more than interface novelty.</p></section>
+                  <section class="case-card"><div class="case-label">approach</div><p>I focused on retrieval quality, semantic chunking, and evaluation-minded thinking so the system would return more useful and medically grounded answers.</p></section>
+                  <section class="case-card"><div class="case-label">architecture</div><ul class="architecture-list"><li>Improved semantic chunking and retrieval preparation for better context quality.</li><li>Worked on dataset validation and refinement for more dependable domain behavior.</li><li>Supported grounding-oriented response design instead of relying only on prompting.</li><li>Treated evaluation as part of engineering, not just a later review step.</li></ul></section>
+                  <section class="case-card"><div class="case-label">proof</div><p>Live link: <a href="https://neuriteai.com/" target="_blank" rel="noopener">Neurite AI</a>.</p></section>
+                  <section class="case-card"><div class="case-label">outcome</div><p>The work is ongoing, with contributions aimed at making responses more accurate, better grounded, and more useful in a medical context.</p></section>
+                  <section class="case-card case-card-full"><div class="case-label">reflection</div><p>This project reinforced that in AI systems, confident output is not enough. The real work is improving what the model sees, how it retrieves context, and how its answers can be checked.</p></section>
+                </div>
+              </div>
+            </article>
+            <article class="project-panel reveal" id="project-panel-4" role="tabpanel" aria-labelledby="project-tab-4" hidden>
+              <div class="panel-topbar"><span class="window-dot dot-red"></span><span class="window-dot dot-amber"></span><span class="window-dot dot-green"></span><span class="panel-title">moonsez.case-study.ts</span></div>
+              <div class="project-panel-body">
+                <header class="project-panel-header"><div><div class="project-kicker">operations automation | project lead</div><h2>Moon SEZ Automation</h2></div><div class="project-status">status: live</div></header>
+                <p class="project-summary">As project lead on Moon SEZ Automation, I worked on automation flows, CRON-driven processes, backend pipelines, and delivery coordination in a live operational environment where trust and recovery mattered as much as speed.</p>
+                <div class="case-study-grid">
+                  <section class="case-card"><div class="case-label">problem</div><p>Manual operational work was slow, inconsistent, and hard to audit. The challenge was to replace it with automation without creating a system the team could not understand or recover.</p></section>
+                  <section class="case-card"><div class="case-label">context</div><p>This was live production work with multiple stakeholders, rollback risk, and delivery pressure. I was responsible for both technical execution and helping the team move with confidence.</p></section>
+                  <section class="case-card"><div class="case-label">approach</div><p>I led the project through incremental rollout, flow prioritization, and production-minded implementation so we could build trust while still moving the system forward.</p></section>
+                  <section class="case-card"><div class="case-label">architecture</div><ul class="architecture-list"><li>Designed automation flows and backend processing around live operational needs.</li><li>Used CRON jobs and structured processing pipelines for repeatable execution.</li><li>Managed delivery tasks, implementation priorities, and code quality across the work.</li><li>Kept documentation and communication tied to rollout decisions.</li></ul></section>
+                  <section class="case-card"><div class="case-label">proof</div><p>Related live product: <a href="https://moon.sezone.in" target="_blank" rel="noopener">Moon Sezone</a>.</p></section>
+                  <section class="case-card"><div class="case-label">outcome</div><p>The project created a stronger operational base for automation and sharpened my ability to lead delivery while balancing system design, implementation, and team trust.</p></section>
+                  <section class="case-card case-card-full"><div class="case-label">reflection</div><p>This work pushed me beyond implementation alone. It taught me that leadership in engineering means making technical decisions that other people can execute, support, and believe in.</p></section>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="thinking">
+        <div class="section-label">// How I Think</div>
+        <div class="principles reveal">
+          <article class="principle"><div class="principle-header"><span class="principle-tag">[PRINCIPLE_01]</span><div class="principle-text">Choose systems the team can reason about, not systems that only impress on paper.</div></div><div class="principle-expand">In Sezone, that meant avoiding a heavier orchestration stack and choosing a queue model the team could actually debug and maintain under production pressure.</div></article>
+          <article class="principle"><div class="principle-header"><span class="principle-tag">[PRINCIPLE_02]</span><div class="principle-text">Design for failure before designing for polish.</div></div><div class="principle-expand">Retries, visibility, recovery paths, and auditability usually matter more than elegant happy-path demos. Most real incidents live in the edges, not the center.</div></article>
+          <article class="principle"><div class="principle-header"><span class="principle-tag">[PRINCIPLE_03]</span><div class="principle-text">Maintainability is a delivery feature, not something postponed until later.</div></div><div class="principle-expand">Runbooks, clear naming, deployment repeatability, and readable logs are how software stays useful after the person who wrote it steps away.</div></article>
+          <article class="principle"><div class="principle-header"><span class="principle-tag">[PRINCIPLE_04]</span><div class="principle-text">Automation should remove repetition, not hide uncertainty.</div></div><div class="principle-expand">If a workflow still needs judgment, the system should expose ambiguity clearly instead of pretending every decision can be automated safely.</div></article>
+          <article class="principle"><div class="principle-header"><span class="principle-tag">[PRINCIPLE_05]</span><div class="principle-text">Measure what matters, especially when the output looks convincing.</div></div><div class="principle-expand">That is why retrieval quality and evaluation mattered more than prompt polish in Neurite AI. Confident output is not the same as useful output.</div></article>
+        </div>
+      </section>
+
+      <section class="section" id="depth">
+        <div class="section-label">// Technical Depth</div>
+        <div class="dashboard-grid reveal">
+          <article class="dashboard-card"><div class="dashboard-label">backend_systems</div><p>Built queue-based processing, tenant-aware scheduling, and deployment flows for automation workloads that move hundreds of thousands of records. The main problem was not writing workers; it was keeping failure isolation, traceability, and operational confidence as load grew.</p></article>
+          <article class="dashboard-card"><div class="dashboard-label">performance_and_reliability</div><p>Improved throughput by moving fragile single-process execution into async pipelines and reduced deployment time through Docker, Nginx, and CI/CD standardization. The useful gains came from removing avoidable manual steps and unstable execution paths.</p></article>
+          <article class="dashboard-card"><div class="dashboard-label">automation_tooling</div><p>Built operator-facing desktop automation where usability affected correctness. Progress feedback, retries, manifests, and recovery behavior mattered because the software replaced manual operational work rather than supporting it from a distance.</p></article>
+          <article class="dashboard-card"><div class="dashboard-label">data_and_retrieval</div><p>Worked on retrieval pipelines, dataset validation, and semantic chunking for medical document querying. The technical challenge was not simply connecting an LLM, but improving how the right context is found, ranked, and verified.</p></article>
+        </div>
+      </section>
+
+      <section class="section" id="experience">
+        <div class="section-label">// Experience</div>
+        <div class="experience-grid reveal">
+          <article class="experience-card"><div class="experience-top"><div><div class="experience-company">Software Developer | Azlogics Pvt. Ltd.</div><h2>Building and maintaining live SaaS, automation, AI, and internal platform products</h2></div><div class="experience-period">July 2025 - Present</div></div><div class="experience-log"><div class="log-line log-info">[INFO] Build and maintain production systems across MERN, Node.js, automation tooling, Electron, and AI-assisted products.</div><div class="log-line log-info">[INFO] Own Sezone end to end, including system design, backend, frontend, deployment, optimization, admin panel, client panel, and ongoing support.</div><div class="log-line log-info">[INFO] Contributed to RPACPC panels, AZAPI, Azom360, APEX, Neurite AI, and Moon SEZ automation efforts in live business environments.</div><div class="log-line log-debug">[DEBUG] The consistent challenge is shipping systems that work in production after handoff, not just during development.</div></div><p class="experience-note">This role strengthened my ability to work across product scope, architecture, implementation, deployment, and ongoing operational ownership.</p></article>
+          <article class="experience-card"><div class="experience-top"><div><div class="experience-company">Intern | Azlogics Pvt. Ltd.</div><h2>Contributing to verification workflows, utilities, and internal automation during internship</h2></div><div class="experience-period">Jan 2025 - June 2025</div></div><div class="experience-log"><div class="log-line log-info">[INFO] Worked on RPACPC admin and client panel workflows, API automation, and backend validation improvements.</div><div class="log-line log-info">[INFO] Served as the primary developer maintaining and enhancing the RPACPC Electron utility used by internal teams.</div><div class="log-line log-debug">[DEBUG] Also developed internal automation support tools such as AZAPI-oriented OCR and CAPTCHA workflow helpers.</div></div><p class="experience-note">This phase gave me real production exposure early and built the base for the ownership I took on later as a full-time developer.</p></article>
+          <article class="experience-card"><div class="experience-top"><div><div class="experience-company">Intern | Litsbros: Laksh IT Solutions Pvt. Ltd.</div><h2>Learning to become effective quickly inside a Java and Spring Boot environment</h2></div><div class="experience-period">June 2024 - Dec 2024</div></div><div class="experience-log"><div class="log-line log-info">[INFO] Worked on full-stack development using Spring Boot, Hibernate, JDBC, SQL, and responsive UI implementation.</div><div class="log-line log-info">[INFO] Learned to understand unfamiliar systems by tracing logs, tests, and data flow instead of waiting for walkthroughs.</div><div class="log-line log-debug">[DEBUG] This experience made me more disciplined about understanding real execution paths before proposing changes.</div></div><p class="experience-note">The biggest gain here was learning how to become useful quickly in an existing codebase with stronger conventions and less handholding.</p></article>
+        </div>
+      </section>
+
+      <section class="section" id="now">
+        <div class="section-label">// Runtime</div>
+        <div class="dashboard-grid reveal">
+          <article class="dashboard-card"><div class="dashboard-label">current_scope</div><p>Owning Sezone in production while contributing to live company products including RPACPC workflows, Neurite AI, AZAPI.ai, Azom360, and other operational software.</p></article>
+          <article class="dashboard-card"><div class="dashboard-label">learning</div><p>How retrieval systems, evaluation workflows, and AI-assisted product layers behave when correctness, grounding, and trust matter more than novelty.</p></article>
+          <article class="dashboard-card"><div class="dashboard-label">best_fit</div><p>High-ownership software roles where I can work across architecture, backend, frontend, deployment, debugging, and long-term maintenance.</p></article>
+          <article class="dashboard-card"><div class="dashboard-label">looking_for</div><p>Engineering teams that value dependable execution, production thinking, and developers who can take responsibility for complete systems.</p></article>
+        </div>
+      </section>
+
+      <section class="section" id="lessons">
+        <div class="section-label">// Engineering Notes</div>
+        <div class="incident-list reveal">
+          <article class="incident-card"><div class="incident-marker">note_01</div><div><h2>Teams trust software faster when they can see what it is doing</h2><p>Logs, progress state, and explicit recovery paths are often more persuasive than promising that the system is automated.</p></div></article>
+          <article class="incident-card"><div class="incident-marker">note_02</div><div><h2>The right architecture is often the one the team can operate repeatedly</h2><p>Operational clarity beats theoretical elegance when the same people have to ship, support, and debug the system.</p></div></article>
+          <article class="incident-card"><div class="incident-marker">note_03</div><div><h2>Most production pain comes from ambiguous state</h2><p>When a record is neither clearly processed nor clearly failed, every downstream step becomes more expensive.</p></div></article>
+        </div>
+      </section>
+
+      <section class="section" id="failures">
+        <div class="section-label">// Failures & Lessons</div>
+        <div class="incident-list reveal">
+          <article class="incident-card"><div class="incident-marker">lesson_01</div><div><h2>I have built systems that worked but were too dependent on me</h2><p>A deployment process is not done when it is technically successful. It is done when somebody else can run it, understand it, and recover it without guesswork.</p></div></article>
+          <article class="incident-card"><div class="incident-marker">lesson_02</div><div><h2>I have added automation before failure handling was mature enough</h2><p>The result was ambiguous state and harder recovery. That experience made me much more deliberate about manifests, retries, and explicit recovery design.</p></div></article>
+        </div>
+      </section>
+
+      <section class="section" id="contact">
+        <div class="section-label">// Contact</div>
+        <div class="contact-panel reveal">
+          <div class="panel-topbar"><span class="window-dot dot-red"></span><span class="window-dot dot-amber"></span><span class="window-dot dot-green"></span><span class="panel-title">connect.sh</span></div>
+          <div class="contact-body">
+            <div class="contact-command"><span class="prompt">$</span><span>open communication-channel</span></div>
+            <div class="contact-links"><a href="mailto:gayatriambatkar44@gmail.com" class="contact-link">gayatriambatkar44@gmail.com</a><a href="https://linkedin.com/in/gayatri-ambatkar-304621236" target="_blank" rel="noopener" class="contact-link">linkedin</a><a href="https://github.com/gayatriambatkar" target="_blank" rel="noopener" class="contact-link">github</a><a href="https://drive.google.com/file/d/1nGL78QnLnvSBzmRJ2utNC_tAgc_xdMVa/view?usp=sharing" target="_blank" rel="noopener" class="contact-link">resume</a><a href="https://azapi.ai/" target="_blank" rel="noopener" class="contact-link">AZAPI.ai</a><a href="https://azom360.azlogics.com/" target="_blank" rel="noopener" class="contact-link">Azom360</a><a href="https://apexmodulars.com/" target="_blank" rel="noopener" class="contact-link">APEX</a></div>
+          </div>
+        </div>
+      </section>
+    </main>
+    <footer class="footer"><div class="footer-inner"><span>Gayatri Ambatkar</span><span>system_state: stable</span><span>location: Nagpur, India</span></div></footer>
+  </div>
+  <script src="main.js"></script>
 </body>
 </html>
