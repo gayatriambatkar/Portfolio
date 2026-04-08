@@ -1175,6 +1175,15 @@ button {
     display: grid;
   }
 
+  .principles-intro {
+    font-size: 0.78rem;
+    line-height: 1.7;
+  }
+
+  .principle-action {
+    margin-top: 6px;
+  }
+
   .hero-title {
     max-width: 11ch;
   }
@@ -1182,6 +1191,7 @@ button {
   .hero-summary,
   .project-summary,
   .dashboard-card p,
+  .experience-summary,
   .experience-note,
   .incident-card p {
     font-size: 0.98rem;
@@ -1190,6 +1200,15 @@ button {
 
   .hero-meta {
     gap: 10px;
+  }
+
+  .hero-terminal .output-block {
+    display: grid;
+    gap: 6px;
+  }
+
+  .hero-terminal .output-label {
+    min-width: 0;
   }
 
   .workspace {
@@ -1336,6 +1355,22 @@ button {
   .incident-card {
     gap: 10px;
   }
+
+  .experience-list {
+    padding-left: 16px;
+    gap: 8px;
+    font-size: 0.78rem;
+  }
+
+  .contact-links {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .contact-link {
+    width: 100%;
+    text-align: center;
+  }
 }
 
 @media (max-width: 560px) {
@@ -1371,9 +1406,23 @@ button {
     gap: 10px;
   }
 
+  .signal-card {
+    min-height: 0;
+  }
+
   .signal-card,
   .dashboard-card {
     padding: 16px;
+  }
+
+  .project-mobile-tab {
+    min-height: 42px;
+    padding: 9px 12px;
+    font-size: 0.84rem;
+  }
+
+  .panel-topbar {
+    padding: 11px 14px;
   }
 
   .button,
