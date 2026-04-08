@@ -98,7 +98,8 @@ function activateProject(tab) {
 projectTabs.forEach((tab) => {
   tab.addEventListener('click', () => activateProject(tab));
   tab.addEventListener('keydown', (event) => {
-    const siblingTabs = Array.from(tab.parentElement.querySelectorAll('[data-project-target]'));
+    const tabContainer = tab.closest('.project-tabs, .project-mobile-nav');
+    const siblingTabs = Array.from(tabContainer.querySelectorAll('[data-project-target]'));
     const currentIndex = siblingTabs.indexOf(tab);
     if (event.key === 'ArrowDown' || event.key === 'ArrowRight') {
       event.preventDefault();

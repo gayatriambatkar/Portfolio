@@ -163,7 +163,17 @@ button {
 .section {
   width: min(100%, var(--content-max));
   margin: 0 auto;
-  padding: var(--section-pad) var(--gutter);
+  padding: clamp(64px, 8vw, 108px) var(--gutter);
+}
+
+#now {
+  padding-bottom: clamp(40px, 5vw, 64px);
+}
+
+#lessons,
+#failures,
+#contact {
+  padding-top: clamp(40px, 5vw, 64px);
 }
 
 .section-label,
@@ -633,6 +643,11 @@ button {
   background: var(--terminal-output-bg);
 }
 
+.terminal-output-compact {
+  gap: 10px;
+  background: rgba(255, 255, 255, 0.02);
+}
+
 .output-block {
   display: flex;
   gap: 12px;
@@ -652,8 +667,7 @@ button {
   font-size: 0.88rem;
 }
 
-.log-stream,
-.experience-log {
+.log-stream {
   display: grid;
   gap: 10px;
 }
@@ -700,6 +714,11 @@ button {
   gap: 8px;
 }
 
+.project-tab-group {
+  display: grid;
+  gap: 4px;
+}
+
 .project-tab {
   display: flex;
   gap: 12px;
@@ -743,6 +762,25 @@ button {
   color: var(--text-dim);
   font-size: 0.68rem;
   letter-spacing: 0.04em;
+}
+
+.project-tab-link {
+  margin-left: 44px;
+  color: var(--accent-blue);
+  font-size: 0.68rem;
+  letter-spacing: 0.04em;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.project-tab-link:hover,
+.project-tab-link:focus-visible {
+  color: var(--text);
+}
+
+.project-tab-link-muted {
+  color: var(--text-dim);
+  text-decoration: none;
 }
 
 .workspace-main {
@@ -894,6 +932,13 @@ button {
   gap: 14px;
 }
 
+.principles-intro {
+  color: var(--text-dim);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.05em;
+}
+
 .principle,
 .experience-card,
 .contact-panel {
@@ -908,7 +953,7 @@ button {
 
 .principle-header {
   display: grid;
-  grid-template-columns: auto 1fr;
+  grid-template-columns: auto 1fr auto;
   gap: 16px;
   align-items: start;
 }
@@ -917,6 +962,14 @@ button {
   font-size: clamp(0.98rem, 1.6vw, 1.14rem);
   line-height: 1.58;
   color: var(--text);
+}
+
+.principle-action {
+  color: var(--text-dim);
+  font-family: var(--font-mono);
+  font-size: 0.66rem;
+  letter-spacing: 0.06em;
+  white-space: nowrap;
 }
 
 .principle-expand {
@@ -931,8 +984,12 @@ button {
   border-color: rgba(143, 169, 218, 0.18);
 }
 
+.principle.open .principle-action {
+  color: var(--accent-blue);
+}
+
 .principle.open .principle-expand {
-  max-height: 220px;
+  max-height: 420px;
   opacity: 1;
   margin-top: 14px;
 }
@@ -942,8 +999,31 @@ button {
   padding: 18px;
 }
 
+.experience-summary {
+  margin: 14px 0 0;
+  color: var(--text-soft);
+  line-height: 1.72;
+}
+
+.experience-list {
+  margin: 16px 0 0;
+  padding-left: 18px;
+  color: var(--text-soft);
+  display: grid;
+  gap: 10px;
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  line-height: 1.75;
+}
+
+.experience-list li {
+  padding-left: 4px;
+}
+
 .experience-note {
   margin: 18px 0 0;
+  padding-top: 14px;
+  border-top: 1px solid var(--line);
 }
 
 .dashboard-grid {
@@ -1050,6 +1130,10 @@ button {
 
   .project-tab {
     min-height: 100%;
+  }
+
+  .project-tab-link {
+    margin-left: 0;
   }
 
   .hero-signal-grid,
