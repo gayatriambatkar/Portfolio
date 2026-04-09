@@ -1,0 +1,334 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-ibm-plex: Aptos, 'Segoe UI Variable Display', 'Segoe UI', Arial, sans-serif;
+  --font-dm-mono: 'Cascadia Code', Consolas, 'Courier New', monospace;
+  --bg: #f4f7fb;
+  --bg-elevated: #edf2f9;
+  --bg-panel: rgba(255, 255, 255, 0.88);
+  --bg-panel-2: rgba(248, 251, 255, 0.82);
+  --line: rgba(15, 23, 42, 0.08);
+  --line-strong: rgba(15, 23, 42, 0.16);
+  --text: #101828;
+  --text-soft: #425466;
+  --text-dim: #66758a;
+  --accent: #2d6cdf;
+  --accent-blue: #5ea0ff;
+  --accent-amber: #b08a4f;
+  --accent-mint: #2ea596;
+  --danger: #c86877;
+  --shadow: 0 20px 48px rgba(15, 23, 42, 0.08);
+  --shadow-soft: 0 12px 32px rgba(15, 23, 42, 0.06);
+  --radius: 24px;
+  --radius-sm: 14px;
+  --radius-xs: 10px;
+  --nav-h: 84px;
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --bg-accent: rgba(94, 160, 255, 0.08);
+  --bg-gradient-start: #f9fbfe;
+  --bg-gradient-mid: #f3f7fc;
+  --bg-gradient-end: #eaf0f8;
+  --grid-horizontal: rgba(15, 23, 42, 0.028);
+  --grid-vertical: rgba(15, 23, 42, 0.02);
+  --selection-bg: rgba(94, 160, 255, 0.22);
+  --selection-text: #07111f;
+  --surface-panel: rgba(255, 255, 255, 0.76);
+  --surface-panel-strong: rgba(255, 255, 255, 0.92);
+  --surface-muted: rgba(240, 245, 252, 0.88);
+  --surface-ghost: rgba(255, 255, 255, 0.52);
+  --surface-chip: rgba(255, 255, 255, 0.72);
+  --surface-accent: linear-gradient(145deg, rgba(94, 160, 255, 0.16), rgba(124, 224, 195, 0.1));
+  --terminal-bg: rgba(241, 245, 251, 0.92);
+  --terminal-output-bg: rgba(255, 255, 255, 0.76);
+}
+
+.dark {
+  --bg: #0b1020;
+  --bg-elevated: #0f1628;
+  --bg-panel: rgba(17, 24, 43, 0.86);
+  --bg-panel-2: rgba(11, 17, 30, 0.92);
+  --line: rgba(148, 163, 184, 0.14);
+  --line-strong: rgba(148, 163, 184, 0.24);
+  --text: #e6ecf5;
+  --text-soft: #b2c0d5;
+  --text-dim: #7f90aa;
+  --accent: #5ea0ff;
+  --accent-blue: #78b4ff;
+  --accent-amber: #d4b173;
+  --accent-mint: #7ce0c3;
+  --danger: #ee7f94;
+  --shadow: 0 28px 64px rgba(2, 8, 20, 0.42);
+  --shadow-soft: 0 16px 38px rgba(2, 8, 20, 0.28);
+  --bg-accent: rgba(94, 160, 255, 0.1);
+  --bg-gradient-start: #0d1324;
+  --bg-gradient-mid: #0b1020;
+  --bg-gradient-end: #09101d;
+  --grid-horizontal: rgba(255, 255, 255, 0.018);
+  --grid-vertical: rgba(255, 255, 255, 0.012);
+  --selection-bg: rgba(94, 160, 255, 0.32);
+  --selection-text: #f7fbff;
+  --surface-panel: rgba(17, 24, 43, 0.76);
+  --surface-panel-strong: rgba(11, 17, 30, 0.94);
+  --surface-muted: rgba(15, 22, 39, 0.82);
+  --surface-ghost: rgba(255, 255, 255, 0.02);
+  --surface-chip: rgba(255, 255, 255, 0.045);
+  --surface-accent: linear-gradient(145deg, rgba(94, 160, 255, 0.22), rgba(124, 224, 195, 0.14));
+  --terminal-bg: rgba(12, 18, 33, 0.86);
+  --terminal-output-bg: rgba(255, 255, 255, 0.035);
+}
+
+@layer base {
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    margin: 0;
+    min-height: 100vh;
+    background:
+      radial-gradient(circle at top left, var(--bg-accent), transparent 30%),
+      radial-gradient(circle at 80% 0%, rgba(124, 224, 195, 0.08), transparent 24%),
+      linear-gradient(
+        180deg,
+        var(--bg-gradient-start) 0%,
+        var(--bg-gradient-mid) 45%,
+        var(--bg-gradient-end) 100%
+      );
+    color: var(--text);
+    font-family: var(--font-ibm-plex, system-ui, sans-serif);
+    line-height: 1.65;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    background-image:
+      linear-gradient(var(--grid-horizontal) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid-vertical) 1px, transparent 1px);
+    background-size: 100% 56px, 56px 100%;
+    mask-image: linear-gradient(180deg, rgba(255, 255, 255, 0.4), transparent 78%);
+    z-index: 0;
+  }
+
+  body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    background: linear-gradient(180deg, transparent 0%, rgba(255, 255, 255, 0.015) 100%);
+    z-index: 0;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  button,
+  input,
+  textarea {
+    font: inherit;
+  }
+
+  ::selection {
+    background: var(--selection-bg);
+    color: var(--selection-text);
+  }
+
+  ::-webkit-scrollbar {
+    width: 11px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: var(--bg-elevated);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: var(--text-dim);
+    border: 2px solid var(--bg-elevated);
+    border-radius: 999px;
+  }
+}
+
+@layer utilities {
+  .font-mono-base {
+    font-family: var(--font-dm-mono, 'Courier New', monospace);
+  }
+
+  .panel-surface {
+    border: 1px solid var(--line);
+    background: linear-gradient(180deg, var(--surface-panel-strong), var(--surface-panel));
+    box-shadow: var(--shadow);
+    backdrop-filter: blur(18px);
+  }
+
+  .soft-surface {
+    border: 1px solid var(--line);
+    background: var(--surface-muted);
+    box-shadow: var(--shadow-soft);
+  }
+
+  .section-max {
+    width: min(100%, 1180px);
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: clamp(20px, 4vw, 40px);
+    padding-right: clamp(20px, 4vw, 40px);
+  }
+
+  .section-pad {
+    padding-top: clamp(72px, 9vw, 116px);
+    padding-bottom: clamp(72px, 9vw, 116px);
+  }
+
+  .panel-topbar {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 14px 18px;
+    border-bottom: 1px solid var(--line);
+    background: rgba(255, 255, 255, 0.015);
+  }
+
+  .section-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--font-dm-mono, 'Courier New', monospace);
+    font-size: 0.74rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+
+  .section-eyebrow::before {
+    content: '';
+    width: 28px;
+    height: 1px;
+    background: currentColor;
+    opacity: 0.7;
+  }
+
+  .section-title {
+    margin: 0;
+    font-size: clamp(2rem, 4vw, 3rem);
+    line-height: 1.08;
+    letter-spacing: -0.05em;
+    color: var(--text);
+  }
+
+  .section-copy {
+    margin: 0;
+    max-width: 62ch;
+    font-size: clamp(1rem, 1.35vw, 1.08rem);
+    line-height: 1.8;
+    color: var(--text-soft);
+  }
+
+  .info-grid {
+    display: grid;
+    gap: 16px;
+  }
+
+  .info-card {
+    border: 1px solid var(--line);
+    border-radius: var(--radius-sm);
+    background: var(--surface-muted);
+    padding: 22px;
+  }
+
+  .interactive-card {
+    transition:
+      transform 180ms var(--ease),
+      border-color 180ms var(--ease),
+      background-color 180ms var(--ease),
+      box-shadow 180ms var(--ease);
+  }
+
+  .interactive-card:hover {
+    transform: translateY(-2px);
+    border-color: var(--line-strong);
+  }
+
+  .pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 9px 14px;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    background: var(--surface-chip);
+    color: var(--text-soft);
+  }
+
+  .button-primary,
+  .button-secondary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 46px;
+    padding: 0 18px;
+    border-radius: 999px;
+    font-family: var(--font-dm-mono, 'Courier New', monospace);
+    font-size: 0.76rem;
+    letter-spacing: 0.06em;
+    transition:
+      transform 180ms var(--ease),
+      opacity 180ms var(--ease),
+      border-color 180ms var(--ease),
+      background-color 180ms var(--ease),
+      color 180ms var(--ease);
+  }
+
+  .button-primary {
+    background: linear-gradient(135deg, var(--accent), var(--accent-blue));
+    color: #fff;
+    box-shadow: 0 14px 28px rgba(94, 160, 255, 0.22);
+  }
+
+  .button-secondary {
+    border: 1px solid var(--line);
+    background: var(--surface-chip);
+    color: var(--text);
+  }
+
+  .button-primary:hover,
+  .button-secondary:hover {
+    transform: translateY(-1px);
+  }
+
+  .stack-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .stack-chip {
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 8px 12px;
+    background: var(--surface-chip);
+    color: var(--text-soft);
+    font-family: var(--font-dm-mono, 'Courier New', monospace);
+    font-size: 0.72rem;
+    letter-spacing: 0.04em;
+  }
+}
+
+@media (max-width: 768px) {
+  .section-title {
+    letter-spacing: -0.04em;
+  }
+}
