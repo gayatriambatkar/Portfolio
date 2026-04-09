@@ -50,3 +50,7 @@ coverage/
 # ─── Misc ────────────────────────────────────────────────────────────────────
 *.pem
 .vercel
+frontend/
+frontend
+
+.env.local.example
