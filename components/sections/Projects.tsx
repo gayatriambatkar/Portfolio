@@ -19,7 +19,7 @@ function renderContent(content: CaseContent) {
     );
   }
 
-  if ((content.type === 'paragraph' || content.type === 'full') && content.links && content.links.length > 0) {
+  if (content.type === 'paragraph' && content.links && content.links.length > 0) {
     const parts = content.text.split(/\{([^}]+)\}/g);
     return (
       <p className="text-[0.84rem] leading-relaxed" style={{ color: 'var(--text-soft)' }}>
