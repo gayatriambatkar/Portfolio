@@ -61,8 +61,8 @@ export default function Nav() {
                 <span className="text-[0.92rem] font-semibold tracking-[-0.03em]" style={{ color: 'var(--text)' }}>
                   Gayatri Ambatkar
                 </span>
-                <span className="font-mono-base text-[0.82rem] uppercase tracking-[0.06em]" style={{ color: 'var(--text-dim)' }}>
-                  Full-stack engineer | 2 years
+                <span className="whitespace-nowrap font-mono-base text-[0.76rem] uppercase tracking-[0.05em] lg:text-[0.82rem]" style={{ color: 'var(--text-dim)' }}>
+                  Full-stack engineer
                 </span>
               </div>
             </a>

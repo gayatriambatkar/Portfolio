@@ -520,7 +520,7 @@ export const experience: ExperienceItem[] = [
   {
     company: 'Azlogics Pvt. Ltd.',
     role: 'Software Developer',
-    period: 'July 2025 - Present',
+    period: 'June 2025 - Present',
     summary: 'Building and maintaining live SaaS, automation, AI, and internal platform products.',
     bullets: [
       'Own Sezone end to end across system design, backend, frontend, deployment, optimization, admin panel, client panel, and production support.',
