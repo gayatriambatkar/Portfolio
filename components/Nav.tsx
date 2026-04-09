@@ -23,7 +23,10 @@ export default function Nav() {
     setMounted(true);
     const onScroll = () => setScrolled(window.scrollY > 18);
     window.addEventListener('scroll', onScroll, { passive: true });
-    return () => window.removeEventListener('scroll', onScroll);
+    return () => {
+      window.removeEventListener('scroll', onScroll);
+      document.body.style.overflow = '';
+    };
   }, []);
 
   function toggleMenu() {
@@ -40,9 +43,9 @@ export default function Nav() {
   return (
     <>
       <header className="sticky top-0 z-50">
-        <div className="section-max py-4">
+        <div className="section-max py-3 sm:py-4">
           <nav
-            className="flex items-center gap-4 rounded-full border px-4 py-3 transition-all duration-300"
+            className="flex items-center gap-3 rounded-full border px-3 py-2.5 transition-all duration-300 sm:gap-4 sm:px-4 sm:py-3"
             style={{
               minHeight: 'var(--nav-h)',
               borderColor: scrolled ? 'var(--line-strong)' : 'var(--line)',
@@ -51,13 +54,13 @@ export default function Nav() {
               backdropFilter: 'blur(18px)',
             }}
           >
-            <a href="#hero" className="flex items-center gap-3 mr-auto">
+            <a href="#hero" className="mr-auto flex min-w-0 items-center gap-3">
               <LogoMark />
-              <div className="hidden sm:flex flex-col">
+              <div className="hidden min-w-0 sm:flex flex-col">
                 <span className="text-[0.92rem] font-semibold tracking-[-0.03em]" style={{ color: 'var(--text)' }}>
                   Gayatri Ambatkar
                 </span>
-                <span className="font-mono-base text-[0.68rem] uppercase tracking-[0.1em]" style={{ color: 'var(--text-dim)' }}>
+                <span className="font-mono-base text-[0.82rem] uppercase tracking-[0.06em]" style={{ color: 'var(--text-dim)' }}>
                   Full-stack engineer
                 </span>
               </div>
@@ -68,7 +71,7 @@ export default function Nav() {
                 <a
                   key={href}
                   href={href}
-                  className="font-mono-base text-[0.72rem] uppercase tracking-[0.08em] transition-colors duration-200"
+                  className="font-mono-base text-[0.84rem] uppercase tracking-[0.05em] transition-colors duration-200"
                   style={{ color: 'var(--text-soft)' }}
                 >
                   {label}
@@ -99,7 +102,7 @@ export default function Nav() {
             <button
               type="button"
               onClick={toggleMenu}
-              className="md:hidden flex h-11 w-11 items-center justify-center rounded-full border"
+              className="flex h-12 w-12 items-center justify-center rounded-full border md:hidden"
               style={{ borderColor: 'var(--line)', background: 'var(--surface-chip)' }}
               aria-label="Toggle navigation"
               aria-expanded={menuOpen}
@@ -132,12 +135,14 @@ export default function Nav() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -14 }}
             transition={{ duration: 0.22, ease: [0.22, 1, 0.36, 1] }}
-            className="fixed left-5 right-5 top-[108px] z-40 rounded-[24px] border p-4 md:hidden"
+            className="fixed inset-x-4 bottom-4 top-[calc(var(--nav-h)+0.75rem)] z-40 overflow-y-auto overscroll-contain rounded-[24px] border p-4 md:hidden"
             style={{
               borderColor: 'var(--line-strong)',
               background: 'var(--surface-panel-strong)',
               boxShadow: 'var(--shadow)',
             }}
+            role="dialog"
+            aria-modal="true"
           >
             <div className="flex flex-col gap-2">
               {navLinks.map(({ label, href }) => (
@@ -145,7 +150,7 @@ export default function Nav() {
                   key={href}
                   href={href}
                   onClick={closeMenu}
-                  className="rounded-[14px] border px-4 py-3 font-mono-base text-[0.78rem] uppercase tracking-[0.08em]"
+                  className="flex min-h-[48px] items-center rounded-[14px] border px-4 py-3.5 font-mono-base text-[0.84rem] uppercase tracking-[0.05em]"
                   style={{ borderColor: 'var(--line)', background: 'var(--surface-chip)', color: 'var(--text)' }}
                 >
                   {label}

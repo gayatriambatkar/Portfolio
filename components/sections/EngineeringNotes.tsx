@@ -13,19 +13,19 @@ export default function EngineeringNotes() {
           {engineeringNotes.map((note) => (
             <article
               key={note.marker}
-              className="panel-surface rounded-[var(--radius)] p-5 md:p-6 flex gap-5 items-start"
+              className="panel-surface flex flex-col gap-2 rounded-[var(--radius)] p-5 sm:flex-row sm:items-start sm:gap-5 md:p-6"
             >
               <span
-                className="font-mono-base text-[0.65rem] tracking-[0.1em] shrink-0 mt-1"
+                className="font-mono-base text-[0.78rem] tracking-[0.04em] sm:mt-1 sm:shrink-0"
                 style={{ color: 'var(--accent)' }}
               >
                 {note.marker}
               </span>
               <div className="flex flex-col gap-2">
-                <h2 className="text-[0.95rem] font-medium leading-snug" style={{ color: 'var(--text)' }}>
+                <h2 className="text-[1rem] font-medium leading-snug" style={{ color: 'var(--text)' }}>
                   {note.title}
                 </h2>
-                <p className="text-[0.84rem] leading-relaxed" style={{ color: 'var(--text-soft)' }}>
+                <p className="text-[0.92rem] leading-7" style={{ color: 'var(--text-soft)' }}>
                   {note.text}
                 </p>
               </div>

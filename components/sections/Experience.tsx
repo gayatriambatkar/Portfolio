@@ -12,34 +12,34 @@ export default function Experience() {
         <div className="flex flex-col gap-4">
           {experience.map((item, i) => (
             <article key={i} className="panel-surface rounded-[var(--radius)] p-6 md:p-8">
-              <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 mb-4">
+              <div className="mb-4 flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between">
                 <div>
-                  <div className="font-mono-base text-[0.72rem] tracking-[0.08em] mb-1" style={{ color: 'var(--accent)' }}>
+                  <div className="mb-1 font-mono-base text-[0.82rem] tracking-[0.04em]" style={{ color: 'var(--accent)' }}>
                     {item.company}
                   </div>
                   <h2 className="text-[1.1rem] font-semibold" style={{ color: 'var(--text)' }}>
                     {item.role}
                   </h2>
                 </div>
-                <span className="font-mono-base text-[0.68rem] tracking-[0.06em] shrink-0" style={{ color: 'var(--text-dim)' }}>
+                <span className="self-start font-mono-base text-[0.82rem] tracking-[0.04em] sm:shrink-0" style={{ color: 'var(--text-dim)' }}>
                   {item.period}
                 </span>
               </div>
 
-              <p className="text-[0.86rem] leading-relaxed mb-4" style={{ color: 'var(--text-soft)' }}>
+              <p className="mb-4 text-[0.92rem] leading-7" style={{ color: 'var(--text-soft)' }}>
                 {item.summary}
               </p>
 
               <ul className="flex flex-col gap-2 mb-4 pl-4">
                 {item.bullets.map((bullet, j) => (
-                  <li key={j} className="text-[0.84rem] leading-relaxed list-disc" style={{ color: 'var(--text-soft)' }}>
+                  <li key={j} className="text-[0.92rem] leading-7 list-disc" style={{ color: 'var(--text-soft)' }}>
                     {bullet}
                   </li>
                 ))}
               </ul>
 
               <p
-                className="text-[0.8rem] leading-relaxed px-4 py-3 rounded-[8px] border border-[var(--line)] font-mono-base"
+                className="rounded-[8px] border border-[var(--line)] px-4 py-3 font-mono-base text-[0.84rem] leading-6 tracking-[0.03em]"
                 style={{ color: 'var(--text-dim)', background: 'var(--surface-muted)' }}
               >
                 {item.note}

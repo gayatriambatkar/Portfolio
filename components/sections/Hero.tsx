@@ -55,10 +55,10 @@ export default function Hero() {
           className="flex flex-col gap-7"
         >
           <div className="flex flex-wrap items-center gap-3">
-            <span className="pill font-mono-base text-[0.72rem] uppercase tracking-[0.08em]">
+            <span className="pill font-mono-base text-[0.82rem] uppercase tracking-[0.05em]">
               Open to software engineering roles
             </span>
-            <span className="pill font-mono-base text-[0.72rem] uppercase tracking-[0.08em]">
+            <span className="pill font-mono-base text-[0.82rem] uppercase tracking-[0.05em]">
               Nagpur, India
             </span>
           </div>
@@ -66,7 +66,7 @@ export default function Hero() {
           <div className="flex flex-col gap-5">
             <span className="section-eyebrow">Software engineer with production ownership</span>
             <h1
-              className="max-w-[11ch] text-[clamp(3.4rem,10vw,6.2rem)] font-semibold leading-[0.92] tracking-[-0.07em]"
+              className="max-w-[11ch] text-[clamp(2.6rem,11vw,6.2rem)] font-semibold leading-[0.92] tracking-[-0.06em]"
               style={{ color: 'var(--text)' }}
             >
               Full-stack engineer building reliable products for real-world use.
@@ -76,8 +76,8 @@ export default function Hero() {
             </p>
           </div>
 
-          <div className="soft-surface rounded-[20px] px-5 py-4">
-            <div className="flex flex-col gap-2 font-mono-base text-[0.76rem] uppercase tracking-[0.08em]">
+          <div className="soft-surface rounded-[20px] px-4 py-4 sm:px-5">
+            <div className="flex flex-col gap-2 font-mono-base text-[0.84rem] uppercase tracking-[0.05em]">
               <span style={{ color: 'var(--accent)' }}>Current focus</span>
               <AnimatePresence mode="wait">
                 {visible && (
@@ -96,11 +96,11 @@ export default function Hero() {
             </div>
           </div>
 
-          <div className="flex flex-wrap gap-3">
-            <a href="#projects" className="button-primary">
+          <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+            <a href="#projects" className="button-primary w-full sm:w-auto">
               View flagship work
             </a>
-            <a href="#contact" className="button-secondary">
+            <a href="#contact" className="button-secondary w-full sm:w-auto">
               Start a conversation
             </a>
           </div>
@@ -121,15 +121,15 @@ export default function Hero() {
           className="panel-surface rounded-[var(--radius)] p-6 md:p-7"
         >
           <div className="flex flex-col gap-6">
-            <div className="flex items-start justify-between gap-4">
+            <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
               <div className="flex flex-col gap-2">
                 <span className="section-eyebrow">Proof of work</span>
-                <h2 className="text-[1.8rem] font-semibold tracking-[-0.04em]" style={{ color: 'var(--text)' }}>
+                <h2 className="text-[1.55rem] font-semibold tracking-[-0.04em] sm:text-[1.8rem]" style={{ color: 'var(--text)' }}>
                   Technical depth with product accountability
                 </h2>
               </div>
               <div
-                className="rounded-[18px] px-4 py-3 font-mono-base text-[0.7rem] uppercase tracking-[0.08em]"
+                className="self-start rounded-[18px] px-4 py-3 font-mono-base text-[0.82rem] uppercase tracking-[0.05em]"
                 style={{ background: 'var(--surface-accent)', color: 'var(--text)' }}
               >
                 End-to-end owner
@@ -140,7 +140,7 @@ export default function Hero() {
               {impactCards.map((card) => (
                 <article key={card.label} className="info-card interactive-card">
                   <div className="flex flex-col gap-2">
-                    <span className="font-mono-base text-[0.68rem] uppercase tracking-[0.1em]" style={{ color: 'var(--accent)' }}>
+                    <span className="font-mono-base text-[0.82rem] uppercase tracking-[0.05em]" style={{ color: 'var(--accent)' }}>
                       {card.label}
                     </span>
                     <span className="text-[1.55rem] font-semibold tracking-[-0.04em]" style={{ color: 'var(--text)' }}>
@@ -156,7 +156,7 @@ export default function Hero() {
 
             <div className="soft-surface rounded-[20px] p-5">
               <div className="flex flex-col gap-2">
-                <span className="font-mono-base text-[0.68rem] uppercase tracking-[0.1em]" style={{ color: 'var(--accent)' }}>
+                <span className="font-mono-base text-[0.82rem] uppercase tracking-[0.05em]" style={{ color: 'var(--accent)' }}>
                   Best fit
                 </span>
                 <p className="text-[0.95rem] leading-[1.8]" style={{ color: 'var(--text-soft)' }}>

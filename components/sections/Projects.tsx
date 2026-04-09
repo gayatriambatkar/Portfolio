@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { projects, ProjectCase, CaseContent } from '@/lib/data';
 import PanelTopbar from '@/components/PanelTopbar';
@@ -9,9 +9,9 @@ import SectionReveal from '@/components/SectionReveal';
 function renderContent(content: CaseContent) {
   if (content.type === 'list') {
     return (
-      <ul className="flex flex-col gap-2 pl-4">
+      <ul className="flex w-full min-w-0 flex-col gap-2 pl-4 whitespace-pre-wrap break-words [overflow-wrap:anywhere]">
         {content.items.map((item, i) => (
-          <li key={i} className="text-[0.88rem] leading-7 list-disc" style={{ color: 'var(--text-soft)' }}>
+          <li key={i} className="w-full min-w-0 whitespace-pre-wrap break-words text-[0.92rem] leading-7 list-disc [overflow-wrap:anywhere]" style={{ color: 'var(--text-soft)' }}>
             {item}
           </li>
         ))}
@@ -23,7 +23,7 @@ function renderContent(content: CaseContent) {
     const links = content.links;
     const parts = content.text.split(/\{([^}]+)\}/g);
     return (
-      <p className="text-[0.88rem] leading-7" style={{ color: 'var(--text-soft)' }}>
+      <div className="w-full min-w-0 whitespace-pre-wrap break-words text-[0.92rem] leading-7 [overflow-wrap:anywhere]" style={{ color: 'var(--text-soft)' }}>
         {parts.map((part, i) => {
           const link = links.find((item) => item.label === part);
           return link ? (
@@ -32,56 +32,60 @@ function renderContent(content: CaseContent) {
               href={link.href}
               target="_blank"
               rel="noopener noreferrer"
-              className="underline decoration-transparent transition-colors duration-200 hover:decoration-current"
+              className="underline decoration-transparent transition-colors duration-200 hover:decoration-current break-all"
               style={{ color: 'var(--accent)' }}
             >
               {link.label}
             </a>
           ) : (
-            <span key={i}>{part}</span>
+            <span key={i} className="whitespace-pre-wrap break-words [overflow-wrap:anywhere]">
+              {part}
+            </span>
           );
         })}
-      </p>
+      </div>
     );
   }
 
   return (
-    <p className="text-[0.88rem] leading-7" style={{ color: 'var(--text-soft)' }}>
+    <div className="w-full min-w-0 whitespace-pre-wrap break-words text-[0.92rem] leading-7 [overflow-wrap:anywhere]" style={{ color: 'var(--text-soft)' }}>
       {content.text}
-    </p>
+    </div>
   );
 }
 
 const coreLabels = ['problem', 'approach', 'outcome'];
 
-function CaseCard({ caseItem }: { caseItem: ProjectCase }) {
+function CaseCard({ caseItem, isDesktop }: { caseItem: ProjectCase; isDesktop: boolean }) {
   const [expanded, setExpanded] = useState(false);
   const isCore = coreLabels.includes(caseItem.label);
   const isFull = caseItem.content.type === 'full';
-  const shouldShowContent = isCore || expanded;
+  const shouldShowContent = isDesktop || isCore || expanded;
 
   return (
     <div
-      className="rounded-[16px] border overflow-hidden"
+      className="min-w-0 rounded-[16px] border"
       style={{ borderColor: 'var(--line)', background: 'var(--surface-muted)', gridColumn: isFull ? '1 / -1' : undefined }}
     >
       <button
         type="button"
-        onClick={() => !isCore && setExpanded((value) => !value)}
-        className="flex w-full items-center justify-between gap-3 px-4 py-4 text-left"
-        style={{ cursor: isCore ? 'default' : 'pointer' }}
+        onClick={() => !isDesktop && !isCore && setExpanded((value) => !value)}
+        className="flex min-h-[44px] w-full items-center justify-between gap-3 px-4 py-4 text-left"
+        style={{ cursor: isDesktop || isCore ? 'default' : 'pointer' }}
       >
-        <span className="font-mono-base text-[0.7rem] uppercase tracking-[0.1em]" style={{ color: 'var(--accent)' }}>
+        <span className="font-mono-base text-[0.82rem] uppercase tracking-[0.05em]" style={{ color: 'var(--accent)' }}>
           {caseItem.label}
         </span>
-        {!isCore && (
-          <span className="font-mono-base text-[0.82rem] shrink-0" style={{ color: 'var(--text-dim)' }}>
+        {!isDesktop && !isCore && (
+          <span className="font-mono-base text-[0.9rem] shrink-0" style={{ color: 'var(--text-dim)' }}>
             {expanded ? '-' : '+'}
           </span>
         )}
       </button>
 
-      <div className={`${shouldShowContent ? 'block' : 'hidden'} px-4 pb-4`}>
+      <div
+        className={`${shouldShowContent ? 'block w-full min-w-0' : 'hidden'} px-4 pb-4`}
+      >
         {renderContent(caseItem.content)}
       </div>
     </div>
@@ -90,7 +94,33 @@ function CaseCard({ caseItem }: { caseItem: ProjectCase }) {
 
 export default function Projects() {
   const [activeId, setActiveId] = useState(projects[0].id);
+  const [isDesktop, setIsDesktop] = useState(false);
   const active = projects.find((project) => project.id === activeId) ?? projects[0];
+  const detailRef = useRef<HTMLElement | null>(null);
+
+  useEffect(() => {
+    if (typeof window === 'undefined') {
+      return;
+    }
+
+    const mediaQuery = window.matchMedia('(min-width: 768px)');
+    const updateViewport = () => setIsDesktop(mediaQuery.matches);
+
+    updateViewport();
+    mediaQuery.addEventListener('change', updateViewport);
+
+    return () => mediaQuery.removeEventListener('change', updateViewport);
+  }, []);
+
+  function handleProjectSelect(projectId: string) {
+    setActiveId(projectId);
+
+    if (!isDesktop && typeof window !== 'undefined') {
+      requestAnimationFrame(() => {
+        detailRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+    }
+  }
 
   return (
     <section id="projects" className="section-max section-pad">
@@ -99,41 +129,50 @@ export default function Projects() {
       </div>
 
       <SectionReveal>
-        <div className="panel-surface grid min-w-0 overflow-hidden rounded-[var(--radius)] md:grid-cols-[280px_minmax(0,1fr)]" style={{ minHeight: 520 }}>
+        <div className="panel-surface grid min-w-0 rounded-[var(--radius)] md:grid-cols-[280px_minmax(0,1fr)] md:min-h-[520px]">
           <div
             className="flex flex-col gap-3 border-b p-4 md:border-b-0 md:border-r"
             style={{ borderColor: 'var(--line)', background: 'var(--surface-ghost)' }}
           >
             <div className="px-2 py-2">
-              <div className="font-mono-base text-[0.68rem] uppercase tracking-[0.1em]" style={{ color: 'var(--text-dim)' }}>
+              <div className="font-mono-base text-[0.82rem] uppercase tracking-[0.05em]" style={{ color: 'var(--text-dim)' }}>
                 project explorer
               </div>
-              <p className="mt-2 text-[0.84rem] leading-6" style={{ color: 'var(--text-soft)' }}>
-                Mobile view now keeps project context visible while you switch between case studies.
+              <p className="mt-2 text-[0.92rem] leading-7" style={{ color: 'var(--text-soft)' }}>
+                Tap any project below and the matching case study opens right under this list.
               </p>
             </div>
 
-            <div className="flex gap-3 overflow-x-auto pb-2 md:hidden snap-x snap-mandatory">
+            <div className="grid gap-2 md:hidden">
               {projects.map((project) => (
                 <button
                   key={project.id}
                   type="button"
-                  onClick={() => setActiveId(project.id)}
-                  className="min-w-[228px] flex-shrink-0 snap-start rounded-[16px] border px-4 py-4 text-left transition-all duration-200"
+                  onClick={() => handleProjectSelect(project.id)}
+                  className="min-h-[44px] w-full rounded-[16px] border px-4 py-3 text-left transition-all duration-200"
                   style={{
                     borderColor: activeId === project.id ? 'var(--accent)' : 'var(--line)',
                     background: activeId === project.id ? 'var(--bg-accent)' : 'var(--surface-chip)',
                   }}
+                  aria-pressed={activeId === project.id}
                 >
-                  <div className="flex flex-col gap-1">
-                    <span className="font-mono-base text-[0.68rem] uppercase tracking-[0.08em]" style={{ color: activeId === project.id ? 'var(--accent)' : 'var(--text-dim)' }}>
+                  <div className="flex items-start gap-3">
+                    <span className="font-mono-base shrink-0 text-[0.82rem] uppercase tracking-[0.05em]" style={{ color: activeId === project.id ? 'var(--accent)' : 'var(--text-dim)' }}>
                       {project.index}
                     </span>
-                    <span className="text-[0.98rem] font-semibold leading-tight" style={{ color: 'var(--text)' }}>
-                      {project.title}
-                    </span>
-                    <span className="font-mono-base text-[0.64rem] uppercase tracking-[0.06em]" style={{ color: 'var(--text-dim)' }}>
-                      {project.kicker}
+                    <div className="min-w-0 flex-1">
+                      <span className="block text-[0.96rem] font-semibold leading-tight" style={{ color: 'var(--text)' }}>
+                        {project.title}
+                      </span>
+                      <span className="mt-1 block font-mono-base text-[0.76rem] uppercase tracking-[0.04em]" style={{ color: 'var(--text-dim)' }}>
+                        {project.kicker}
+                      </span>
+                    </div>
+                    <span
+                      className="font-mono-base shrink-0 self-center text-[0.72rem] uppercase tracking-[0.05em]"
+                      style={{ color: activeId === project.id ? 'var(--accent)' : 'var(--text-dim)' }}
+                    >
+                      {activeId === project.id ? 'open' : 'view'}
                     </span>
                   </div>
                 </button>
@@ -145,22 +184,22 @@ export default function Projects() {
                 <button
                   key={project.id}
                   type="button"
-                  onClick={() => setActiveId(project.id)}
-                  className="rounded-[16px] border px-4 py-4 text-left transition-all duration-200"
+                  onClick={() => handleProjectSelect(project.id)}
+                  className="min-h-[44px] rounded-[16px] border px-4 py-4 text-left transition-all duration-200"
                   style={{
                     borderColor: activeId === project.id ? 'var(--accent)' : 'transparent',
                     background: activeId === project.id ? 'var(--bg-accent)' : 'transparent',
                   }}
                 >
                   <div className="flex gap-3">
-                    <span className="font-mono-base text-[0.65rem] uppercase tracking-[0.08em]" style={{ color: activeId === project.id ? 'var(--accent)' : 'var(--text-dim)' }}>
+                    <span className="font-mono-base text-[0.82rem] uppercase tracking-[0.05em]" style={{ color: activeId === project.id ? 'var(--accent)' : 'var(--text-dim)' }}>
                       {project.index}
                     </span>
                     <div className="flex flex-col gap-1">
                       <span className="text-[0.94rem] font-semibold" style={{ color: 'var(--text)' }}>
                         {project.title}
                       </span>
-                      <span className="font-mono-base text-[0.64rem] uppercase tracking-[0.06em]" style={{ color: 'var(--text-dim)' }}>
+                      <span className="font-mono-base text-[0.78rem] uppercase tracking-[0.04em]" style={{ color: 'var(--text-dim)' }}>
                         {project.tabMeta}
                       </span>
                     </div>
@@ -172,6 +211,7 @@ export default function Projects() {
 
           <AnimatePresence mode="wait">
             <motion.article
+              ref={detailRef}
               key={active.id}
               initial={{ opacity: 0, x: 10 }}
               animate={{ opacity: 1, x: 0 }}
@@ -182,22 +222,31 @@ export default function Projects() {
             >
               <PanelTopbar title={active.filename} />
 
-              <div className="flex flex-col gap-5 p-4 md:gap-6 md:p-7">
+              <div className="flex flex-col gap-4 p-4 sm:gap-5 md:gap-6 md:p-7">
+                <div className="rounded-[16px] border px-4 py-3 md:hidden" style={{ borderColor: 'var(--line)', background: 'var(--surface-chip)' }}>
+                  <span className="font-mono-base text-[0.74rem] uppercase tracking-[0.05em]" style={{ color: 'var(--accent)' }}>
+                    selected project
+                  </span>
+                  <p className="mt-1 text-[0.92rem] font-semibold leading-6" style={{ color: 'var(--text)' }}>
+                    {active.title}
+                  </p>
+                </div>
+
                 <header className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
                   <div className="min-w-0">
-                    <div className="font-mono-base mb-2 text-[0.68rem] uppercase tracking-[0.1em]" style={{ color: 'var(--text-dim)' }}>
+                    <div className="font-mono-base mb-2 text-[0.82rem] uppercase tracking-[0.05em]" style={{ color: 'var(--text-dim)' }}>
                       {active.kicker}
                     </div>
-                    <h2 className="text-[1.6rem] font-semibold leading-tight tracking-[-0.03em] md:text-[1.85rem]" style={{ color: 'var(--text)' }}>
+                    <h2 className="text-[1.35rem] font-semibold leading-tight tracking-[-0.03em] sm:text-[1.5rem] md:text-[1.85rem]" style={{ color: 'var(--text)' }}>
                       {active.title}
                     </h2>
-                    <p className="mt-2 font-mono-base text-[0.68rem] uppercase tracking-[0.08em]" style={{ color: 'var(--text-dim)' }}>
+                    <p className="mt-2 break-words font-mono-base text-[0.82rem] uppercase tracking-[0.04em]" style={{ color: 'var(--text-dim)' }}>
                       {active.tabMeta}
                     </p>
                   </div>
 
                   <span
-                    className="font-mono-base shrink-0 rounded-full border px-3 py-1.5 text-[0.65rem] uppercase tracking-[0.08em]"
+                    className="font-mono-base self-start rounded-full border px-3 py-2 text-[0.78rem] uppercase tracking-[0.04em] sm:shrink-0"
                     style={{ borderColor: 'var(--line)', color: 'var(--text-dim)', background: 'var(--surface-chip)' }}
                   >
                     status: {active.status}
@@ -206,24 +255,24 @@ export default function Projects() {
 
                 <div className="rounded-[18px] border p-4 md:p-5" style={{ borderColor: 'var(--line)', background: 'var(--surface-ghost)' }}>
                   <div className="flex flex-col gap-3">
-                    <div className="flex items-center justify-between gap-3">
-                      <span className="font-mono-base text-[0.68rem] uppercase tracking-[0.1em]" style={{ color: 'var(--accent)' }}>
+                    <div className="flex flex-col gap-1 sm:flex-row sm:items-center sm:justify-between sm:gap-3">
+                      <span className="font-mono-base text-[0.82rem] uppercase tracking-[0.05em]" style={{ color: 'var(--accent)' }}>
                         project visual
                       </span>
-                      <span className="font-mono-base text-[0.64rem] uppercase tracking-[0.08em]" style={{ color: 'var(--text-dim)' }}>
+                      <span className="font-mono-base text-[0.78rem] uppercase tracking-[0.04em]" style={{ color: 'var(--text-dim)' }}>
                         assets-ready
                       </span>
                     </div>
 
                     <div
-                      className="flex min-h-[180px] items-end rounded-[14px] border p-4 md:min-h-[220px]"
+                      className="flex min-h-[140px] items-end rounded-[14px] border p-4 sm:min-h-[180px] md:min-h-[220px]"
                       style={{
                         borderColor: 'var(--line)',
                         background: 'linear-gradient(145deg, rgba(94, 160, 255, 0.14), rgba(124, 224, 195, 0.08))',
                       }}
                     >
                       <div className="max-w-[28ch]">
-                        <span className="font-mono-base text-[0.68rem] uppercase tracking-[0.08em]" style={{ color: 'var(--text-dim)' }}>
+                        <span className="font-mono-base text-[0.82rem] uppercase tracking-[0.05em]" style={{ color: 'var(--text-dim)' }}>
                           future image slot
                         </span>
                         <p className="mt-2 text-[0.9rem] leading-7" style={{ color: 'var(--text-soft)' }}>
@@ -234,19 +283,22 @@ export default function Projects() {
                   </div>
                 </div>
 
-                <p className="min-w-0 text-[0.92rem] leading-7" style={{ color: 'var(--text-soft)' }}>
+                <p
+                  className="max-w-full min-w-0 whitespace-normal break-words text-[0.92rem] leading-7 [overflow-wrap:anywhere]"
+                  style={{ color: 'var(--text-soft)' }}
+                >
                   {active.summary}
                 </p>
 
                 {active.tabLinks && active.tabLinks.length > 0 && (
-                  <div className="flex flex-wrap gap-3">
+                  <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap">
                     {active.tabLinks.map((link) => (
                       <a
                         key={link.href}
                         href={link.href}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="button-secondary"
+                        className="button-secondary w-full sm:w-auto"
                       >
                         {link.label}
                       </a>
@@ -254,9 +306,9 @@ export default function Projects() {
                   </div>
                 )}
 
-                <div className="grid gap-3 sm:grid-cols-2">
+                <div className="grid gap-3 lg:grid-cols-2">
                   {active.cases.map((caseItem, index) => (
-                    <CaseCard key={index} caseItem={caseItem} />
+                    <CaseCard key={index} caseItem={caseItem} isDesktop={isDesktop} />
                   ))}
                 </div>
               </div>

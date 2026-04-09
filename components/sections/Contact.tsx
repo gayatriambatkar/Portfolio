@@ -59,10 +59,11 @@ export default function Contact() {
     border: '1px solid var(--line)',
     borderRadius: '8px',
     color: 'var(--text)',
-    padding: '10px 14px',
+    padding: '12px 14px',
     width: '100%',
     fontFamily: 'var(--font-ibm-plex)',
-    fontSize: '0.86rem',
+    fontSize: '1rem',
+    minHeight: 48,
     outline: 'none',
     transition: 'border-color 0.2s',
   } as React.CSSProperties;
@@ -77,10 +78,10 @@ export default function Contact() {
         <div className="panel-surface rounded-[var(--radius)] overflow-hidden">
           <PanelTopbar title="connect.sh" />
 
-          <div className="p-6 md:p-8 grid md:grid-cols-2 gap-8">
+          <div className="grid gap-8 p-5 md:grid-cols-2 md:p-8">
             {/* Left: quick links */}
             <div className="flex flex-col gap-5">
-              <div className="font-mono-base text-[0.75rem] flex items-center gap-2" style={{ color: 'var(--text-dim)' }}>
+              <div className="flex items-center gap-2 font-mono-base text-[0.84rem] tracking-[0.03em]" style={{ color: 'var(--text-dim)' }}>
                 <span style={{ color: 'var(--accent)' }}>$</span>
                 <span>open communication-channel</span>
               </div>
@@ -92,7 +93,7 @@ export default function Contact() {
                     href={href}
                     target={external ? '_blank' : undefined}
                     rel={external ? 'noopener noreferrer' : undefined}
-                    className="font-mono-base text-[0.82rem] tracking-[0.04em] px-4 py-3 rounded-[8px] border border-[var(--line)] transition-all duration-200 inline-block"
+                    className="inline-flex min-h-[48px] items-center rounded-[8px] border border-[var(--line)] px-4 py-3 font-mono-base text-[0.92rem] tracking-[0.03em] transition-all duration-200 break-all sm:break-normal"
                     style={{ color: 'var(--text-soft)', background: 'var(--surface-chip)' }}
                     onMouseEnter={(e) => { e.currentTarget.style.color = 'var(--accent)'; e.currentTarget.style.borderColor = 'var(--accent)'; }}
                     onMouseLeave={(e) => { e.currentTarget.style.color = 'var(--text-soft)'; e.currentTarget.style.borderColor = 'var(--line)'; }}
@@ -105,7 +106,7 @@ export default function Contact() {
 
             {/* Right: contact form */}
             <div className="flex flex-col gap-4">
-              <div className="font-mono-base text-[0.7rem] tracking-[0.08em]" style={{ color: 'var(--text-dim)' }}>
+              <div className="font-mono-base text-[0.82rem] tracking-[0.04em]" style={{ color: 'var(--text-dim)' }}>
                 or send a message directly
               </div>
 
@@ -113,46 +114,67 @@ export default function Contact() {
                 <motion.div
                   initial={{ opacity: 0, y: 8 }}
                   animate={{ opacity: 1, y: 0 }}
-                  className="rounded-[10px] p-5 border border-[var(--line)] font-mono-base text-[0.82rem]"
+                  className="rounded-[10px] border border-[var(--line)] p-5 font-mono-base text-[0.92rem]"
                   style={{ background: 'var(--bg-accent)', color: 'var(--accent)' }}
                 >
                   Message sent. I will get back to you soon.
                 </motion.div>
               ) : (
                 <form onSubmit={handleSubmit} className="flex flex-col gap-3">
-                  <input
-                    type="text"
-                    placeholder="your name"
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
-                    required
-                    style={inputStyle}
-                    onFocus={(e) => (e.target.style.borderColor = 'var(--accent)')}
-                    onBlur={(e) => (e.target.style.borderColor = 'var(--line)')}
-                  />
-                  <input
-                    type="email"
-                    placeholder="your email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    required
-                    style={inputStyle}
-                    onFocus={(e) => (e.target.style.borderColor = 'var(--accent)')}
-                    onBlur={(e) => (e.target.style.borderColor = 'var(--line)')}
-                  />
-                  <textarea
-                    placeholder="your message"
-                    value={message}
-                    onChange={(e) => setMessage(e.target.value)}
-                    required
-                    rows={4}
-                    style={{ ...inputStyle, resize: 'vertical', minHeight: 100 }}
-                    onFocus={(e) => (e.target.style.borderColor = 'var(--accent)')}
-                    onBlur={(e) => (e.target.style.borderColor = 'var(--line)')}
-                  />
+                  <label htmlFor="contact-name" className="flex flex-col gap-2">
+                    <span className="font-mono-base text-[0.84rem] tracking-[0.03em]" style={{ color: 'var(--text-dim)' }}>
+                      Name
+                    </span>
+                    <input
+                      id="contact-name"
+                      type="text"
+                      placeholder="Your name"
+                      value={name}
+                      onChange={(e) => setName(e.target.value)}
+                      required
+                      autoComplete="name"
+                      style={inputStyle}
+                      onFocus={(e) => (e.target.style.borderColor = 'var(--accent)')}
+                      onBlur={(e) => (e.target.style.borderColor = 'var(--line)')}
+                    />
+                  </label>
+                  <label htmlFor="contact-email" className="flex flex-col gap-2">
+                    <span className="font-mono-base text-[0.84rem] tracking-[0.03em]" style={{ color: 'var(--text-dim)' }}>
+                      Email
+                    </span>
+                    <input
+                      id="contact-email"
+                      type="email"
+                      placeholder="your@email.com"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      required
+                      autoComplete="email"
+                      inputMode="email"
+                      style={inputStyle}
+                      onFocus={(e) => (e.target.style.borderColor = 'var(--accent)')}
+                      onBlur={(e) => (e.target.style.borderColor = 'var(--line)')}
+                    />
+                  </label>
+                  <label htmlFor="contact-message" className="flex flex-col gap-2">
+                    <span className="font-mono-base text-[0.84rem] tracking-[0.03em]" style={{ color: 'var(--text-dim)' }}>
+                      Message
+                    </span>
+                    <textarea
+                      id="contact-message"
+                      placeholder="Tell me a little about what you're building or hiring for"
+                      value={message}
+                      onChange={(e) => setMessage(e.target.value)}
+                      required
+                      rows={4}
+                      style={{ ...inputStyle, resize: 'vertical', minHeight: 132 }}
+                      onFocus={(e) => (e.target.style.borderColor = 'var(--accent)')}
+                      onBlur={(e) => (e.target.style.borderColor = 'var(--line)')}
+                    />
+                  </label>
 
                   {formState === 'error' && (
-                    <p className="font-mono-base text-[0.75rem]" style={{ color: 'var(--danger)' }}>
+                    <p className="font-mono-base text-[0.84rem] tracking-[0.03em]" style={{ color: 'var(--danger)' }}>
                       {errorMsg}
                     </p>
                   )}
@@ -160,7 +182,7 @@ export default function Contact() {
                   <button
                     type="submit"
                     disabled={formState === 'sending'}
-                    className="font-mono-base text-[0.78rem] tracking-[0.04em] px-5 py-3 rounded-[8px] transition-all duration-200 disabled:opacity-60"
+                    className="min-h-[48px] rounded-[8px] px-5 py-3 font-mono-base text-[0.92rem] tracking-[0.03em] transition-all duration-200 disabled:opacity-60"
                     style={{ background: 'var(--accent)', color: '#fff', border: 'none', cursor: 'pointer' }}
                     onMouseEnter={(e) => (e.currentTarget.style.opacity = '0.85')}
                     onMouseLeave={(e) => (e.currentTarget.style.opacity = '1')}
