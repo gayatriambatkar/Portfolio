@@ -2,29 +2,6 @@
 
 import { motion } from 'framer-motion';
 
-const impactCards = [
-  {
-    label: 'records / run',
-    value: '200k+',
-    description: 'Multi-tenant SaaS workload handled in live production at Sezone.',
-  },
-  {
-    label: 'credentials managed',
-    value: '1,400+',
-    description: 'Operational scale supported through tenant-aware scheduling and recovery-focused workflows.',
-  },
-  {
-    label: 'pipeline reliability',
-    value: '99%',
-    description: 'Reliability reached after shifting fragile execution into queue-based workers.',
-  },
-  {
-    label: 'processing improvement',
-    value: '6h -> 30m',
-    description: 'Heavy batch workflows accelerated through desktop automation and execution visibility.',
-  },
-];
-
 const stack = ['Node.js', 'React', 'TypeScript', 'Electron', 'Automation', 'MongoDB', 'AI Retrieval'];
 
 export default function Hero() {
@@ -68,24 +45,6 @@ export default function Hero() {
                 I work best in high-ownership product teams where one engineer is trusted to shape architecture, delivery, deployment, and long-term support.
               </p>
             </div>
-          </div>
-
-          <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
-            {impactCards.map((card) => (
-              <article key={card.label} className="info-card interactive-card p-5">
-                <div className="flex flex-col gap-2">
-                  <span className="font-mono-base text-[0.76rem] uppercase tracking-[0.05em]" style={{ color: 'var(--accent)' }}>
-                    {card.label}
-                  </span>
-                  <span className="text-[1.45rem] font-semibold tracking-[-0.04em]" style={{ color: 'var(--text)' }}>
-                    {card.value}
-                  </span>
-                  <p className="text-[0.88rem] leading-[1.7]" style={{ color: 'var(--text-soft)' }}>
-                    {card.description}
-                  </p>
-                </div>
-              </article>
-            ))}
           </div>
 
           <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap">

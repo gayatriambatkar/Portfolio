@@ -461,6 +461,33 @@ export interface DashboardCard {
   text: string;
 }
 
+export interface SkillItem {
+  name: string;
+  category: string;
+  accent: string;
+  glyph: string;
+  logo: string;
+}
+
+export const skills: SkillItem[] = [
+  { name: 'Next.js', category: 'frontend framework', accent: 'var(--skill-slate)', glyph: 'N', logo: 'https://cdn.simpleicons.org/nextdotjs/FFFFFF' },
+  { name: 'React', category: 'UI engineering', accent: 'var(--skill-cyan)', glyph: 'R', logo: 'https://cdn.simpleicons.org/react/61DAFB' },
+  { name: 'TypeScript', category: 'typed apps', accent: 'var(--skill-blue)', glyph: 'TS', logo: 'https://cdn.simpleicons.org/typescript/3178C6' },
+  { name: 'Node.js', category: 'backend runtime', accent: 'var(--skill-green)', glyph: 'ND', logo: 'https://cdn.simpleicons.org/nodedotjs/5FA04E' },
+  { name: 'Express', category: 'API services', accent: 'var(--skill-emerald)', glyph: 'EX', logo: 'https://cdn.simpleicons.org/express/FFFFFF' },
+  { name: 'MongoDB', category: 'document database', accent: 'var(--skill-lime)', glyph: 'MG', logo: 'https://cdn.simpleicons.org/mongodb/47A248' },
+  { name: 'MySQL', category: 'relational data', accent: 'var(--skill-amber)', glyph: 'MY', logo: 'https://cdn.simpleicons.org/mysql/4479A1' },
+  { name: 'Electron', category: 'desktop apps', accent: 'var(--skill-violet)', glyph: 'EL', logo: 'https://cdn.simpleicons.org/electron/47848F' },
+  { name: 'Docker', category: 'deployment', accent: 'var(--skill-sky)', glyph: 'DK', logo: 'https://cdn.simpleicons.org/docker/2496ED' },
+  { name: 'Nginx', category: 'infra gateway', accent: 'var(--skill-indigo)', glyph: 'NG', logo: 'https://cdn.simpleicons.org/nginx/009639' },
+  { name: 'PM2', category: 'process runtime', accent: 'var(--skill-pink)', glyph: 'P2', logo: 'https://cdn.simpleicons.org/pm2/2B037A' },
+  { name: 'Automation', category: 'workflow design', accent: 'var(--skill-orange)', glyph: 'AU', logo: 'https://cdn.simpleicons.org/n8n/EA4B71' },
+  { name: 'REST APIs', category: 'integrations', accent: 'var(--skill-red)', glyph: 'API', logo: 'https://cdn.simpleicons.org/openapiinitiative/6BA539' },
+  { name: 'AI Retrieval', category: 'grounded AI', accent: 'var(--skill-teal)', glyph: 'AI', logo: 'https://cdn.simpleicons.org/openai/FFFFFF' },
+  { name: 'Semantic Chunking', category: 'RAG prep', accent: 'var(--skill-cyan)', glyph: 'SC', logo: 'https://cdn.simpleicons.org/weaviate/FFFFFF' },
+  { name: 'CI/CD', category: 'release flow', accent: 'var(--skill-rose)', glyph: 'CI', logo: 'https://cdn.simpleicons.org/githubactions/2088FF' },
+];
+
 export const depthCards: DashboardCard[] = [
   {
     label: 'backend systems',
