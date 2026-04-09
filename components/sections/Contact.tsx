@@ -91,9 +91,7 @@ export default function Contact() {
                 </div>
               </div>
 
-              <p className="font-mono-base text-[0.82rem] leading-7 tracking-[0.03em]" style={{ color: 'var(--text-dim)' }}>
-                Direct contact links are shown here intentionally so the live portfolio does not depend on a background contact API to feel trustworthy.
-              </p>
+              
             </div>
           </div>
         </div>
