@@ -1,9 +1,12 @@
-// ─── Project types ────────────────────────────────────────────────────────────
-
 export type CaseContent =
   | { type: 'paragraph'; text: string; links?: { label: string; href: string }[] }
   | { type: 'list'; items: string[] }
   | { type: 'full'; text: string };
+
+export interface RecruiterField {
+  label: string;
+  value: string;
+}
 
 export interface ProjectCase {
   label: string;
@@ -15,6 +18,16 @@ export interface ProjectLink {
   href: string;
 }
 
+export interface ProjectVisualStat {
+  label: string;
+  value: string;
+}
+
+export interface ProjectVisualFlow {
+  from: string;
+  to: string;
+}
+
 export interface Project {
   id: string;
   index: string;
@@ -24,12 +37,14 @@ export interface Project {
   status: string;
   tabMeta: string;
   tabLinks?: ProjectLink[];
-  internalNote?: string;
   summary: string;
+  recruiterSnapshot: RecruiterField[];
+  visualTitle: string;
+  visualSummary: string;
+  visualStats: ProjectVisualStat[];
+  visualFlow: ProjectVisualFlow[];
   cases: ProjectCase[];
 }
-
-// ─── Projects ─────────────────────────────────────────────────────────────────
 
 export const projects: Project[] = [
   {
@@ -37,7 +52,7 @@ export const projects: Project[] = [
     index: '01',
     title: 'Sezone',
     filename: 'sezone.case-study.ts',
-    kicker: 'saas platform | end-to-end ownership',
+    kicker: 'flagship SaaS | end-to-end ownership',
     status: 'live',
     tabMeta: 'sezone.in / moon.sezone.in',
     tabLinks: [
@@ -45,27 +60,54 @@ export const projects: Project[] = [
       { label: 'visit moon.sezone.in', href: 'https://moon.sezone.in' },
     ],
     summary:
-      'Sezone is the strongest example of my ownership as a software developer. I built and continue to manage the SaaS platform across system design, backend architecture, frontend development, admin panel, client panel, deployment, optimization, and ongoing maintenance.',
+      'I built and continue to operate Sezone as a production SaaS system spanning architecture, backend workflows, frontend surfaces, deployment, and long-term maintenance.',
+    recruiterSnapshot: [
+      { label: 'Role', value: 'Software Developer, primary product owner' },
+      { label: 'Team size', value: 'Small product team; I owned the engineering core' },
+      { label: 'Timeline', value: '2025 - Present' },
+      { label: 'Stack', value: 'Node.js, React, TypeScript, MongoDB, Docker, Nginx, PM2' },
+      { label: 'What I owned', value: 'System design, backend workers, frontend panels, deployment, optimization, production support' },
+      { label: 'Key outcome', value: 'Reached about 99% pipeline reliability and improved deployment speed by roughly 60%' },
+    ],
+    visualTitle: 'Tenant-aware execution pipeline',
+    visualSummary: 'A multi-tenant SaaS flow built for scale, failure isolation, and production recovery rather than one-off demos.',
+    visualStats: [
+      { label: 'records / run', value: '200k+' },
+      { label: 'credentials', value: '1,400+' },
+      { label: 'pipeline reliability', value: '99%' },
+    ],
+    visualFlow: [
+      { from: 'tenant jobs', to: 'queue workers' },
+      { from: 'queue workers', to: 'admin/client panels' },
+      { from: 'admin/client panels', to: 'deployment + monitoring' },
+    ],
     cases: [
       {
         label: 'problem',
         content: {
           type: 'paragraph',
-          text: 'The business needed a SaaS platform that could support multiple tenants, separate operational concerns cleanly, and give both admins and clients a usable system instead of disconnected internal scripts.',
+          text: 'The business needed a multi-tenant SaaS platform that could replace disconnected internal scripts with a dependable product for both admins and clients.',
         },
       },
       {
         label: 'context',
         content: {
           type: 'paragraph',
-          text: 'I owned the build across the full stack: system design, backend, frontend, deployment, website work, optimization, and ongoing maintenance. The platform had to support 200,000+ records per run, 1,400+ credentials, concurrent schedules, and production troubleshooting.',
+          text: 'I owned the engineering core across system design, backend execution, frontend panels, deployment, optimization, and production troubleshooting while supporting 200,000+ records per run and 1,400+ credentials.',
         },
       },
       {
         label: 'approach',
         content: {
           type: 'paragraph',
-          text: "I designed the system around tenant-aware scheduling, queue-based execution, and operational clarity. The goal was not just to ship features, but to build something the team could run, debug, and trust under live conditions.",
+          text: 'I designed the platform around tenant-aware scheduling, queue-based execution, and operational clarity so the team could run and debug it safely under live conditions.',
+        },
+      },
+      {
+        label: 'key decision',
+        content: {
+          type: 'paragraph',
+          text: 'I chose queue workers with tenant-aware scheduling over a more heavyweight orchestration setup because the critical need was traceability and safe recovery, not architectural complexity for its own sake.',
         },
       },
       {
@@ -73,10 +115,10 @@ export const projects: Project[] = [
         content: {
           type: 'list',
           items: [
-            'Designed backend services and async workers to isolate failures and improve throughput.',
-            'Built the frontend surfaces, admin panel, and client-facing flows needed for real-world use.',
+            'Built backend services and async workers to isolate failures and improve throughput.',
+            'Shipped frontend surfaces, admin workflows, and client-facing flows needed for real usage.',
             'Standardized deployments with Docker, Nginx, and PM2 to reduce manual dependency.',
-            'Maintained and optimized the product as a live SaaS application instead of treating launch as the finish line.',
+            'Continued owning production maintenance and optimization after launch instead of treating delivery as complete.',
           ],
         },
       },
@@ -95,14 +137,14 @@ export const projects: Project[] = [
         label: 'outcome',
         content: {
           type: 'paragraph',
-          text: 'Sezone reached about 99% pipeline reliability, improved deployment speed by roughly 60%, and gave the business a maintainable product that I continue to operate and improve.',
+          text: 'Reached about 99% pipeline reliability, improved deployment speed by roughly 60%, and gave the business a maintainable SaaS product that I still operate and improve.',
         },
       },
       {
         label: 'reflection',
         content: {
           type: 'full',
-          text: 'This project proved that my best work is in high-ownership environments where I can shape the system from first design decisions through production maintenance and optimization.',
+          text: 'This is the clearest example of my best fit: high-ownership engineering where architecture, implementation, deployment, and production support all matter.',
         },
       },
     ],
@@ -114,150 +156,153 @@ export const projects: Project[] = [
     filename: 'rpacpc-utility.case-study.ts',
     kicker: 'desktop automation utility',
     status: 'live',
-    tabMeta: 'desktop exe application',
-    internalNote: 'internal desktop app',
+    tabMeta: 'internal desktop application',
     summary:
-      'An Electron.js desktop application used for RPACPC services where operators can upload and process very large data batches across workflows such as PAN to GST, PAN to Udyam, and related verification-heavy service operations.',
-    cases: [
-      {
-        label: 'problem',
-        content: {
-          type: 'paragraph',
-          text: 'RPACPC service workflows involved very large operational batches, often in lakhs of records, which made manual processing too slow, too repetitive, and too error-prone for daily business use.',
-        },
-      },
-      {
-        label: 'context',
-        content: {
-          type: 'paragraph',
-          text: 'The application is used like a real desktop platform by internal teams. Users provide bulk data batches for service flows such as PAN to GST, PAN to Udyam, and other RPACPC processing tasks that require long-running automation and visible execution state.',
-        },
-      },
-      {
-        label: 'approach',
-        content: {
-          type: 'paragraph',
-          text: 'I worked on the utility as production software: maintaining the Electron.js application, improving execution reliability, handling debugging and packaging, and keeping the batch-processing experience usable for operators handling large-scale workloads.',
-        },
-      },
-      {
-        label: 'architecture',
-        content: {
-          type: 'list',
-          items: [
-            'Electron.js desktop shell for operator-facing execution and batch handling.',
-            'Workflow support for bulk RPACPC services such as PAN to GST and PAN to Udyam.',
-            'Ongoing maintenance, debugging, packaging, and reliability improvements.',
-            'Progress visibility and operational usability for long-running batch jobs.',
-          ],
-        },
-      },
-      {
-        label: 'outcome',
-        content: {
-          type: 'paragraph',
-          text: 'The utility helped convert large repetitive service workflows into a faster desktop-driven batch process, significantly reducing manual effort and supporting large operational runs more reliably.',
-        },
-      },
-      {
-        label: 'reflection',
-        content: {
-          type: 'full',
-          text: 'This project showed how valuable desktop automation can be when business operations depend on large batch execution and the users need a tool they can monitor, trust, and run repeatedly.',
-        },
-      },
+      'I maintained and improved an Electron-based operations tool used to process very large verification-heavy service batches more reliably than manual workflows.',
+    recruiterSnapshot: [
+      { label: 'Role', value: 'Primary maintainer for the desktop utility' },
+      { label: 'Team size', value: 'Internal operations + engineering collaboration' },
+      { label: 'Timeline', value: '2025 - Present' },
+      { label: 'Stack', value: 'Electron.js, Node.js, batch automation workflows' },
+      { label: 'What I owned', value: 'Reliability improvements, debugging, packaging, execution visibility, operator usability' },
+      { label: 'Key outcome', value: 'Reduced heavy processing time from about 6 hours to around 30 minutes for core flows' },
     ],
-  },
-  {
-    id: 'rpacpc-client',
-    index: '03',
-    title: 'RPACPC Client Panel',
-    filename: 'rpacpc-client.case-study.ts',
-    kicker: 'client workflow automation',
-    status: 'live',
-    tabMeta: 'console.rpacpc.com',
-    tabLinks: [{ label: 'visit console.rpacpc.com', href: 'https://console.rpacpc.com/' }],
-    summary:
-      'I contributed to the RPACPC Client Panel by improving API integration, verification workflow automation, and client-side operational flow so the system felt smoother and more dependable in real use.',
+    visualTitle: 'Operator-facing batch workflow',
+    visualSummary: 'A desktop workflow focused on visible progress, safer retries, and less manual effort for verification-heavy batches.',
+    visualStats: [
+      { label: 'processing time', value: '6h -> 30m' },
+      { label: 'workload', value: 'large batch runs' },
+      { label: 'mode', value: 'desktop ops tool' },
+    ],
+    visualFlow: [
+      { from: 'data upload', to: 'workflow runner' },
+      { from: 'workflow runner', to: 'progress + retry state' },
+      { from: 'progress + retry state', to: 'operator output' },
+    ],
     cases: [
       {
         label: 'problem',
-        content: { type: 'paragraph', text: 'Client-side verification flows needed to be faster, smoother, and less dependent on repetitive manual checks.' },
+        content: {
+          type: 'paragraph',
+          text: 'Manual RPACPC service workflows were too slow and error-prone for daily use when teams were handling very large batch volumes.',
+        },
       },
       {
         label: 'context',
-        content: { type: 'paragraph', text: 'This was part of a live operational product, so correctness and flow clarity mattered more than purely cosmetic frontend changes.' },
+        content: {
+          type: 'paragraph',
+          text: 'Operators used the application as real production software for PAN to GST, PAN to Udyam, and related verification-heavy workflows where long-running execution had to stay visible and dependable.',
+        },
       },
       {
         label: 'approach',
-        content: { type: 'paragraph', text: 'I worked on workflow automation and API integration to make the client-side process more reliable and easier to operate.' },
+        content: {
+          type: 'paragraph',
+          text: 'I improved the Electron application as operational software, focusing on execution reliability, packaging, debugging, progress visibility, and operator-friendly recovery behavior.',
+        },
+      },
+      {
+        label: 'key decision',
+        content: {
+          type: 'paragraph',
+          text: 'I treated progress visibility and recovery as core product requirements because hidden automation is risky when operators are running large batches and need to trust the state of the job.',
+        },
       },
       {
         label: 'architecture',
         content: {
           type: 'list',
           items: [
-            'Improved client-side verification workflows.',
-            'Worked on API integrations that supported smoother form operations.',
-            'Helped reduce friction in real operational usage.',
+            'Maintained an Electron shell for batch execution and operator-facing controls.',
+            'Supported bulk service workflows such as PAN to GST and PAN to Udyam.',
+            'Improved debugging, packaging, and execution reliability for repeated daily use.',
+            'Kept status and recovery states visible for long-running jobs.',
           ],
-        },
-      },
-      {
-        label: 'live link',
-        content: {
-          type: 'paragraph',
-          text: 'Visit {RPACPC Client Panel}.',
-          links: [{ label: 'RPACPC Client Panel', href: 'https://console.rpacpc.com/' }],
         },
       },
       {
         label: 'outcome',
         content: {
           type: 'paragraph',
-          text: 'The panel became better suited for repeated operational use by improving flow reliability and reducing manual dependency in verification-heavy tasks.',
+          text: 'Reduced heavy processing time from about 6 hours to roughly 30 minutes for core workflows and replaced repetitive manual effort with a faster desktop-driven batch process.',
         },
       },
       {
         label: 'reflection',
         content: {
           type: 'full',
-          text: 'This project reinforced how much small workflow improvements matter when the same users repeat the same process every day.',
+          text: 'This project reinforced that operational software earns trust through visibility and recovery, not just by automating the happy path.',
         },
       },
     ],
   },
   {
     id: 'rpacpc-admin',
-    index: '04',
+    index: '03',
     title: 'RPACPC Admin Panel',
     filename: 'rpacpc-admin.case-study.ts',
-    kicker: 'admin operations | api automation',
+    kicker: 'admin operations | API automation',
     status: 'live',
     tabMeta: 'adminv2.rpacpc.com',
     tabLinks: [{ label: 'visit adminv2.rpacpc.com', href: 'https://adminv2.rpacpc.com/' }],
     summary:
-      'I contributed to the RPACPC Admin Panel through API verification automation, backend development, and stronger request and response validation for admin-side operations.',
+      'I improved admin-side verification workflows by strengthening backend APIs, request validation, and automation around repetitive operational steps.',
+    recruiterSnapshot: [
+      { label: 'Role', value: 'Software Developer on admin-side workflow automation' },
+      { label: 'Team size', value: 'Shared product delivery team' },
+      { label: 'Timeline', value: '2025' },
+      { label: 'Stack', value: 'Node.js, backend APIs, validation logic, admin workflows' },
+      { label: 'What I owned', value: 'Verification automation, backend development, request/response validation' },
+      { label: 'Key outcome', value: 'Reduced admin-side manual dependency and made verification behavior more dependable' },
+    ],
+    visualTitle: 'Verification-first admin flow',
+    visualSummary: 'Admin-side operations improved by reducing repetitive checks and making validation behavior more explicit.',
+    visualStats: [
+      { label: 'focus', value: 'backend correctness' },
+      { label: 'surface', value: 'admin panel' },
+      { label: 'outcome', value: 'less manual dependency' },
+    ],
+    visualFlow: [
+      { from: 'admin request', to: 'API validation' },
+      { from: 'API validation', to: 'verification automation' },
+      { from: 'verification automation', to: 'clearer admin operations' },
+    ],
     cases: [
       {
         label: 'problem',
-        content: { type: 'paragraph', text: 'Admin-side verification needed to be more reliable, more consistent, and less dependent on repetitive manual checks.' },
+        content: {
+          type: 'paragraph',
+          text: 'Admin-side verification needed to be more reliable and less dependent on repetitive manual checks.',
+        },
       },
       {
         label: 'context',
-        content: { type: 'paragraph', text: 'This work sat close to operational workflows, so backend correctness and validation quality were directly tied to usability.' },
+        content: {
+          type: 'paragraph',
+          text: 'This work sat close to live operational workflows, so backend correctness and validation quality had a direct effect on usability and trust.',
+        },
       },
       {
         label: 'approach',
-        content: { type: 'paragraph', text: 'I focused on verification flow automation and stronger validation logic so the panel could support admin teams with less manual overhead.' },
+        content: {
+          type: 'paragraph',
+          text: 'I focused on verification automation and stronger validation logic so the panel could support admin teams with less manual overhead.',
+        },
+      },
+      {
+        label: 'key decision',
+        content: {
+          type: 'paragraph',
+          text: 'I prioritized stronger request and response validation before adding more workflow convenience because trust in internal software depends on correctness more than interface speed alone.',
+        },
       },
       {
         label: 'architecture',
         content: {
           type: 'list',
           items: [
-            'Worked on backend APIs for admin operations.',
-            'Improved automation around verification flows.',
+            'Worked on backend APIs supporting admin operations.',
+            'Improved automation around verification-heavy flows.',
             'Strengthened request and response validation behavior.',
           ],
         },
@@ -272,71 +317,23 @@ export const projects: Project[] = [
       },
       {
         label: 'outcome',
-        content: { type: 'paragraph', text: 'The panel gained stronger verification support and more dependable backend behavior for admin-side use.' },
+        content: {
+          type: 'paragraph',
+          text: 'Reduced manual dependency in admin-side verification and made backend behavior more dependable for repeated operational use.',
+        },
       },
       {
         label: 'reflection',
         content: {
           type: 'full',
-          text: 'This project showed how much trust in internal software depends on validation quality, not just whether the interface loads correctly.',
+          text: 'This work sharpened my instinct to fix validation and system trust first, then layer convenience on top.',
         },
       },
     ],
   },
   {
-    id: 'azapi',
-    index: '05',
-    title: 'AZAPI.ai',
-    filename: 'azapi.case-study.ts',
-    kicker: 'live company product',
-    status: 'live',
-    tabMeta: 'azapi.ai',
-    tabLinks: [{ label: 'visit azapi.ai', href: 'https://azapi.ai/' }],
-    summary: 'AZAPI.ai is one of the live company products I contributed to as a software developer during my work at AZlogics.',
-    cases: [
-      { label: 'role', content: { type: 'paragraph', text: 'Contributed as part of the software development work delivered inside my current company.' } },
-      { label: 'context', content: { type: 'paragraph', text: 'This is included here to show the breadth of live products I have worked on, beyond my flagship ownership work on Sezone.' } },
-      { label: 'live link', content: { type: 'paragraph', text: 'Visit {AZAPI.ai}.', links: [{ label: 'AZAPI.ai', href: 'https://azapi.ai/' }] } },
-      { label: 'note', content: { type: 'paragraph', text: 'I have kept this summary intentionally concise because the strongest detailed ownership story on this portfolio is Sezone.' } },
-    ],
-  },
-  {
-    id: 'azom360',
-    index: '06',
-    title: 'Azom360',
-    filename: 'azom360.case-study.ts',
-    kicker: 'live company product',
-    status: 'live',
-    tabMeta: 'azom360.azlogics.com',
-    tabLinks: [{ label: 'visit azom360.azlogics.com', href: 'https://azom360.azlogics.com/' }],
-    summary: 'Azom360 is another live product I contributed to as part of my current company work.',
-    cases: [
-      { label: 'role', content: { type: 'paragraph', text: 'Worked on this project as a software developer contributing within the AZlogics product and delivery environment.' } },
-      { label: 'context', content: { type: 'paragraph', text: 'It reflects the range of client and company-facing software I have supported while working on multiple live systems in parallel.' } },
-      { label: 'live link', content: { type: 'paragraph', text: 'Visit {Azom360}.', links: [{ label: 'Azom360', href: 'https://azom360.azlogics.com/' }] } },
-      { label: 'note', content: { type: 'paragraph', text: 'I am keeping the description brief here so the project list stays accurate without overstating details I have not written out fully yet.' } },
-    ],
-  },
-  {
-    id: 'apex',
-    index: '07',
-    title: 'APEX',
-    filename: 'apex.case-study.ts',
-    kicker: 'website delivery',
-    status: 'live',
-    tabMeta: 'apexmodulars.com',
-    tabLinks: [{ label: 'visit apexmodulars.com', href: 'https://apexmodulars.com/' }],
-    summary: 'APEX is one of the live web projects I contributed to during my current company work.',
-    cases: [
-      { label: 'role', content: { type: 'paragraph', text: 'Contributed as part of the software and website delivery work handled inside the company.' } },
-      { label: 'context', content: { type: 'paragraph', text: 'This project adds evidence that my experience is not limited to one system or one type of product.' } },
-      { label: 'live link', content: { type: 'paragraph', text: 'Visit {APEX}.', links: [{ label: 'APEX', href: 'https://apexmodulars.com/' }] } },
-      { label: 'note', content: { type: 'paragraph', text: 'I can expand this section later with more detailed delivery notes if you want this project to carry more weight on the page.' } },
-    ],
-  },
-  {
     id: 'neurite',
-    index: '08',
+    index: '04',
     title: 'Neurite AI',
     filename: 'neurite.case-study.ts',
     kicker: 'medical AI | retrieval and validation',
@@ -344,19 +341,55 @@ export const projects: Project[] = [
     tabMeta: 'neuriteai.com',
     tabLinks: [{ label: 'visit neuriteai.com', href: 'https://neuriteai.com/' }],
     summary:
-      'At Neurite AI, I contributed to a medical-domain AI product where trustworthy responses depended on the quality of retrieval, grounding, data preparation, and evaluation rather than model confidence alone.',
+      'I contributed to a medical-domain AI product where retrieval quality, grounding, and dataset validation mattered more than making the model sound impressive.',
+    recruiterSnapshot: [
+      { label: 'Role', value: 'Engineering contributor on retrieval and validation quality' },
+      { label: 'Team size', value: 'AI product team' },
+      { label: 'Timeline', value: '2025 - Present' },
+      { label: 'Stack', value: 'LLM workflows, retrieval pipelines, semantic chunking, dataset validation' },
+      { label: 'What I owned', value: 'Retrieval preparation, data validation, grounding-oriented improvements, evaluation thinking' },
+      { label: 'Key outcome', value: 'Improved grounding quality and made medical responses more dependable and checkable' },
+    ],
+    visualTitle: 'Grounded medical retrieval loop',
+    visualSummary: 'An AI workflow optimized for context quality, verification, and dependable retrieval in a high-stakes domain.',
+    visualStats: [
+      { label: 'domain', value: 'medical AI' },
+      { label: 'focus', value: 'grounded answers' },
+      { label: 'priority', value: 'retrieval quality' },
+    ],
+    visualFlow: [
+      { from: 'validated data', to: 'semantic chunking' },
+      { from: 'semantic chunking', to: 'retrieval ranking' },
+      { from: 'retrieval ranking', to: 'grounded response checks' },
+    ],
     cases: [
       {
         label: 'problem',
-        content: { type: 'paragraph', text: 'Medical users needed reliable answers from large document sets, but generic LLM behavior was too risky unless responses stayed grounded enough to verify.' },
+        content: {
+          type: 'paragraph',
+          text: 'Medical users needed reliable answers from large document sets, but generic LLM behavior was risky unless responses stayed grounded enough to verify.',
+        },
       },
       {
         label: 'context',
-        content: { type: 'paragraph', text: 'I worked on data preparation, validation, retrieval quality, and model-support tasks for a domain where correctness matters more than interface novelty.' },
+        content: {
+          type: 'paragraph',
+          text: 'I worked on data preparation, validation, retrieval quality, and model-support tasks in a domain where correctness matters more than interface novelty.',
+        },
       },
       {
         label: 'approach',
-        content: { type: 'paragraph', text: 'I focused on retrieval quality, semantic chunking, and evaluation-minded thinking so the system would return more useful and medically grounded answers.' },
+        content: {
+          type: 'paragraph',
+          text: 'I focused on retrieval quality, semantic chunking, and evaluation-minded improvements so the system could return more useful and medically grounded answers.',
+        },
+      },
+      {
+        label: 'key decision',
+        content: {
+          type: 'paragraph',
+          text: 'I prioritized retrieval and validation quality over prompt-only optimization because fluent output is not useful in medical contexts unless the answer is grounded and checkable.',
+        },
       },
       {
         label: 'architecture',
@@ -366,30 +399,35 @@ export const projects: Project[] = [
             'Improved semantic chunking and retrieval preparation for better context quality.',
             'Worked on dataset validation and refinement for more dependable domain behavior.',
             'Supported grounding-oriented response design instead of relying only on prompting.',
-            'Treated evaluation as part of engineering, not just a later review step.',
+            'Treated evaluation as part of engineering, not as a later review step.',
           ],
         },
       },
       {
         label: 'live link',
-        content: { type: 'paragraph', text: 'Visit {Neurite AI}.', links: [{ label: 'Neurite AI', href: 'https://neuriteai.com/' }] },
+        content: {
+          type: 'paragraph',
+          text: 'Visit {Neurite AI}.',
+          links: [{ label: 'Neurite AI', href: 'https://neuriteai.com/' }],
+        },
       },
       {
         label: 'outcome',
-        content: { type: 'paragraph', text: 'The work is ongoing, with contributions aimed at making responses more accurate, better grounded, and more useful in a medical context.' },
+        content: {
+          type: 'paragraph',
+          text: 'Improved grounding quality and made responses more accurate, more useful, and easier to verify in an ongoing medical AI product.',
+        },
       },
       {
         label: 'reflection',
         content: {
           type: 'full',
-          text: 'This project reinforced that in AI systems, confident output is not enough. The real work is improving what the model sees, how it retrieves context, and how its answers can be checked.',
+          text: 'This project reinforced that trustworthy AI depends far more on what the model sees and how answers are checked than on how confident the output sounds.',
         },
       },
     ],
   },
 ];
-
-// ─── Principles ───────────────────────────────────────────────────────────────
 
 export interface Principle {
   tag: string;
@@ -399,38 +437,24 @@ export interface Principle {
 
 export const principles: Principle[] = [
   {
-    tag: '[PRINCIPLE_01]',
-    text: "Choose systems the team can reason about, not systems that only impress on paper.",
+    tag: '[HOW_I_WORK_01]',
+    text: 'I optimize for systems teams can operate repeatedly, not just systems that look advanced.',
     expand:
-      "In Sezone, that meant avoiding a heavier orchestration stack even though it might have looked more advanced on paper. I chose a queue-based model with tenant-aware scheduling because the real requirement was not architectural theater, it was production clarity. When something failed, the team needed to know which tenant was affected, what stage broke, what could be retried safely, and how to recover without depending on one person's memory. A system that looks sophisticated but becomes hard to debug under pressure creates more operational cost than value.",
+      'That usually means choosing patterns with clearer debugging, safer recovery, and less person-dependence instead of heavier solutions that are harder to support under pressure.',
   },
   {
-    tag: '[PRINCIPLE_02]',
-    text: 'Design for failure before designing for polish.',
+    tag: '[HOW_I_WORK_02]',
+    text: 'I design for failure and recovery early because production pain lives between success and failure.',
     expand:
-      'This principle showed up repeatedly in automation work like RPACPC Utility and the panel workflows. The hard part was rarely getting a demo to work once. The hard part was handling unstable sessions, partial batch completion, retries, timeouts, and ambiguous state when thousands or lakhs of records were involved. That is why I pay attention to recovery behavior, progress visibility, retry logic, and auditability early. Most real system pain does not come from the happy path. It comes from the unclear middle state between success and failure.',
+      'Progress visibility, retries, explicit state, and validation quality matter to me because real operators and teammates need to recover quickly when something goes wrong.',
   },
   {
-    tag: '[PRINCIPLE_03]',
-    text: 'Maintainability is a delivery feature, not something postponed until later.',
+    tag: '[HOW_I_WORK_03]',
+    text: 'I treat maintainability as part of delivery, not cleanup work after launch.',
     expand:
-      "I learned this most strongly from systems that became operationally important after launch. A deployment is not truly finished if somebody else cannot run it safely, understand the moving parts, and recover it when something breaks. In practice, this means repeatable deployment flow, readable logs, clear naming, observable jobs, and enough documentation for the next engineer or operator to work effectively. Maintainability is not cleanup work after delivery. It is part of whether the software remains useful once real people depend on it every day.",
-  },
-  {
-    tag: '[PRINCIPLE_04]',
-    text: 'Automation should remove repetition, not hide uncertainty.',
-    expand:
-      'I care about this especially in operational and verification-heavy systems. If a workflow still contains judgment, exceptions, or external instability, the software should expose that clearly instead of pretending everything is safely automated. Good automation reduces repetitive work while still showing users what is happening, where attention is needed, and how recovery should happen. That is why operator-facing progress, visible status, and explicit handling of uncertain states matter so much in the desktop utility and panel work. Hiding uncertainty behind a smooth UI usually creates more downstream confusion.',
-  },
-  {
-    tag: '[PRINCIPLE_05]',
-    text: 'Measure what matters, especially when the output looks convincing.',
-    expand:
-      "This became especially important in Neurite AI. In AI systems, fluent output can make a weak system look stronger than it really is. That is why I focus on retrieval quality, grounding, evaluation, and data preparation instead of treating prompting alone as the solution. The useful question is not whether the system sounds confident. The useful question is whether the answer is supported, relevant, and checkable in a domain where correctness matters. If the measurement is weak, the system can appear impressive while still failing the real task.",
+      'Deployment flow, logs, naming, observability, and handoff quality are part of whether the software remains useful once other people depend on it every day.',
   },
 ];
-
-// ─── Technical Depth ──────────────────────────────────────────────────────────
 
 export interface DashboardCard {
   label: string;
@@ -439,24 +463,22 @@ export interface DashboardCard {
 
 export const depthCards: DashboardCard[] = [
   {
-    label: 'backend_systems',
-    text: 'Built queue-based processing, tenant-aware scheduling, and deployment flows for automation workloads that move hundreds of thousands of records. The main problem was not writing workers; it was keeping failure isolation, traceability, and operational confidence as load grew.',
+    label: 'backend systems',
+    text: 'Built queue-based processing, tenant-aware scheduling, and deployment flows for automation workloads that move hundreds of thousands of records.',
   },
   {
-    label: 'performance_and_reliability',
-    text: 'Improved throughput by moving fragile single-process execution into async pipelines and reduced deployment time through Docker, Nginx, and CI/CD standardization. The useful gains came from removing avoidable manual steps and unstable execution paths.',
+    label: 'performance + reliability',
+    text: 'Improved throughput by moving fragile single-process execution into async pipelines and reduced deployment effort through more repeatable release flow.',
   },
   {
-    label: 'automation_tooling',
-    text: 'Built operator-facing desktop automation where usability affected correctness. Progress feedback, retries, manifests, and recovery behavior mattered because the software replaced manual operational work rather than supporting it from a distance.',
+    label: 'automation tooling',
+    text: 'Built operator-facing desktop automation where progress feedback, retries, and recovery behavior affected correctness as much as raw speed.',
   },
   {
-    label: 'data_and_retrieval',
-    text: 'Worked on retrieval pipelines, dataset validation, and semantic chunking for medical document querying. The technical challenge was not simply connecting an LLM, but improving how the right context is found, ranked, and verified.',
+    label: 'AI retrieval work',
+    text: 'Worked on retrieval pipelines, dataset validation, and semantic chunking where grounded answers and evaluation quality mattered more than prompt-only tuning.',
   },
 ];
-
-// ─── Experience ───────────────────────────────────────────────────────────────
 
 export interface ExperienceItem {
   company: string;
@@ -475,10 +497,10 @@ export const experience: ExperienceItem[] = [
     summary: 'Building and maintaining live SaaS, automation, AI, and internal platform products.',
     bullets: [
       'Own Sezone end to end across system design, backend, frontend, deployment, optimization, admin panel, client panel, and production support.',
-      'Build and maintain production systems across MERN, Node.js, Electron, automation tooling, and AI-assisted products.',
-      'Contributed to RPACPC panels, RPACPC Utility, AZAPI.ai, Azom360, APEX, and Neurite AI in live business environments.',
+      'Build and maintain production systems across Node.js, React, Electron, automation tooling, and AI-assisted products.',
+      'Contributed to RPACPC workflows and Neurite AI inside live business environments with operational constraints.',
     ],
-    note: 'This role strengthened my ability to work across product scope, architecture, implementation, deployment, and ongoing operational ownership.',
+    note: 'This role sharpened my fit for high-ownership engineering work that spans architecture, implementation, deployment, and ongoing support.',
   },
   {
     company: 'Azlogics Pvt. Ltd.',
@@ -487,10 +509,10 @@ export const experience: ExperienceItem[] = [
     summary: 'Worked on verification workflows, utilities, and internal automation during internship.',
     bullets: [
       'Worked on RPACPC admin and client panel workflows, API automation, and backend validation improvements.',
-      'Served as the primary developer maintaining and enhancing the RPACPC Electron utility used by internal teams.',
-      'Built internal automation support tools including AZAPI-oriented OCR and CAPTCHA workflow helpers.',
+      'Served as the primary maintainer for the RPACPC Electron utility used by internal teams.',
+      'Built internal automation support tools including OCR and CAPTCHA workflow helpers.',
     ],
-    note: 'This phase gave me real production exposure early and built the base for the ownership I took on later as a full-time developer.',
+    note: 'This phase gave me production exposure early and built the base for the ownership I later took on full time.',
   },
   {
     company: 'Litsbros: Laksh IT Solutions Pvt. Ltd.',
@@ -500,34 +522,26 @@ export const experience: ExperienceItem[] = [
     bullets: [
       'Worked on full-stack development using Spring Boot, Hibernate, JDBC, SQL, and responsive UI implementation.',
       'Learned to understand unfamiliar systems by tracing logs, tests, and data flow instead of waiting for walkthroughs.',
-      'Became more disciplined about understanding real execution paths before proposing changes.',
+      'Built stronger discipline around understanding real execution paths before proposing changes.',
     ],
     note: 'The biggest gain here was learning how to become useful quickly in an existing codebase with stronger conventions and less handholding.',
   },
 ];
 
-// ─── Runtime (Now) ────────────────────────────────────────────────────────────
-
 export const runtimeCards: DashboardCard[] = [
   {
-    label: 'current_scope',
-    text: 'Owning Sezone in production while contributing to live company products including RPACPC workflows, Neurite AI, AZAPI.ai, Azom360, and other operational software.',
+    label: 'current scope',
+    text: 'Owning Sezone in production while contributing to workflow automation and AI-assisted product layers in live environments.',
   },
   {
-    label: 'learning',
-    text: 'How retrieval systems, evaluation workflows, and AI-assisted product layers behave when correctness, grounding, and trust matter more than novelty.',
-  },
-  {
-    label: 'best_fit',
+    label: 'best fit',
     text: 'High-ownership software roles where I can work across architecture, backend, frontend, deployment, debugging, and long-term maintenance.',
   },
   {
-    label: 'looking_for',
-    text: 'Engineering teams that value dependable execution, production thinking, and developers who can take responsibility for complete systems.',
+    label: 'strongest environments',
+    text: 'Teams that value dependable execution, clear thinking under production pressure, and engineers who can move from idea to support.',
   },
 ];
-
-// ─── Engineering Notes ────────────────────────────────────────────────────────
 
 export interface IncidentCard {
   marker: string;
@@ -538,32 +552,15 @@ export interface IncidentCard {
 export const engineeringNotes: IncidentCard[] = [
   {
     marker: 'note_01',
-    title: 'Teams trust software faster when they can see what it is doing',
-    text: 'Logs, progress state, and explicit recovery paths are often more persuasive than promising that the system is automated.',
-  },
-  {
-    marker: 'note_02',
-    title: 'The right architecture is often the one the team can operate repeatedly',
-    text: 'Operational clarity beats theoretical elegance when the same people have to ship, support, and debug the system.',
-  },
-  {
-    marker: 'note_03',
-    title: 'Most production pain comes from ambiguous state',
-    text: 'When a record is neither clearly processed nor clearly failed, every downstream step becomes more expensive.',
+    title: 'I care about operational clarity as much as feature delivery',
+    text: 'Systems become more trustworthy when logs, progress state, and recovery paths are understandable to the team using them.',
   },
 ];
-
-// ─── Failures ─────────────────────────────────────────────────────────────────
 
 export const failures: IncidentCard[] = [
   {
     marker: 'lesson_01',
-    title: 'I have built systems that worked but were too dependent on me',
-    text: 'A deployment process is not done when it is technically successful. It is done when somebody else can run it, understand it, and recover it without guesswork.',
-  },
-  {
-    marker: 'lesson_02',
-    title: 'I have added automation before failure handling was mature enough',
-    text: 'The result was ambiguous state and harder recovery. That experience made me much more deliberate about manifests, retries, and explicit recovery design.',
+    title: 'I learned early that working software can still be too person-dependent',
+    text: 'That pushed me to design for repeatable deployment, explicit recovery, and better handoff instead of optimizing only for initial delivery.',
   },
 ];

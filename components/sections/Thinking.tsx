@@ -11,7 +11,7 @@ export default function Thinking() {
   return (
     <section id="thinking" className="section-max section-pad">
       <div className="font-mono-base text-[0.78rem] tracking-[0.1em] mb-6" style={{ color: 'var(--accent)' }}>
-        // How I Think
+        // How I Work
       </div>
 
       <SectionReveal>
@@ -20,7 +20,7 @@ export default function Thinking() {
           style={{ padding: '8px' }}
         >
           <p className="px-4 py-3 font-mono-base text-[0.84rem] tracking-[0.03em]" style={{ color: 'var(--text-dim)' }}>
-            Click any principle to expand the practical example behind it.
+            Short operating principles that explain how I make technical decisions in production-facing work.
           </p>
 
           <div className="flex flex-col gap-1">

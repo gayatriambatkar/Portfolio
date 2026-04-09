@@ -61,7 +61,7 @@ export default function Nav() {
                   Gayatri Ambatkar
                 </span>
                 <span className="font-mono-base text-[0.82rem] uppercase tracking-[0.06em]" style={{ color: 'var(--text-dim)' }}>
-                  Full-stack engineer
+                  Full-stack engineer | 2 years
                 </span>
               </div>
             </a>
@@ -95,7 +95,7 @@ export default function Nav() {
                 rel="noopener noreferrer"
                 className="button-primary"
               >
-                open resume
+                view resume
               </a>
             </div>
 
@@ -167,7 +167,7 @@ export default function Nav() {
                 rel="noopener noreferrer"
                 className="button-primary"
               >
-                open resume
+                view resume
               </a>
             </div>
           </motion.div>

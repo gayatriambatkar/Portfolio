@@ -1,12 +1,10 @@
 import Nav from '@/components/Nav';
 import Hero from '@/components/sections/Hero';
 import Projects from '@/components/sections/Projects';
-import Thinking from '@/components/sections/Thinking';
-import Depth from '@/components/sections/Depth';
 import Experience from '@/components/sections/Experience';
+import Depth from '@/components/sections/Depth';
+import Thinking from '@/components/sections/Thinking';
 import Runtime from '@/components/sections/Runtime';
-import EngineeringNotes from '@/components/sections/EngineeringNotes';
-import Failures from '@/components/sections/Failures';
 import Contact from '@/components/sections/Contact';
 import Footer from '@/components/Footer';
 
@@ -18,11 +16,9 @@ export default function Home() {
         <Hero />
         <Projects />
         <Experience />
-        <Thinking />
         <Depth />
+        <Thinking />
         <Runtime />
-        <EngineeringNotes />
-        <Failures />
         <Contact />
       </main>
       <Footer />

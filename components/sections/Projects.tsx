@@ -54,7 +54,7 @@ function renderContent(content: CaseContent) {
   );
 }
 
-const coreLabels = ['problem', 'approach', 'outcome'];
+const coreLabels = ['problem', 'approach', 'outcome', 'key decision'];
 
 function CaseCard({ caseItem, isDesktop }: { caseItem: ProjectCase; isDesktop: boolean }) {
   const [expanded, setExpanded] = useState(false);
@@ -83,9 +83,7 @@ function CaseCard({ caseItem, isDesktop }: { caseItem: ProjectCase; isDesktop: b
         )}
       </button>
 
-      <div
-        className={`${shouldShowContent ? 'block w-full min-w-0' : 'hidden'} px-4 pb-4`}
-      >
+      <div className={`${shouldShowContent ? 'block w-full min-w-0' : 'hidden'} px-4 pb-4`}>
         {renderContent(caseItem.content)}
       </div>
     </div>
@@ -125,7 +123,7 @@ export default function Projects() {
   return (
     <section id="projects" className="section-max section-pad">
       <div className="font-mono-base mb-6 text-[0.78rem] tracking-[0.1em]" style={{ color: 'var(--accent)' }}>
-        // Projects
+        // Featured Projects
       </div>
 
       <SectionReveal>
@@ -136,10 +134,10 @@ export default function Projects() {
           >
             <div className="px-2 py-2">
               <div className="font-mono-base text-[0.82rem] uppercase tracking-[0.05em]" style={{ color: 'var(--text-dim)' }}>
-                project explorer
+                recruiter view
               </div>
               <p className="mt-2 text-[0.92rem] leading-7" style={{ color: 'var(--text-soft)' }}>
-                Tap any project below and the matching case study opens right under this list.
+                Four projects with the clearest evidence of ownership, technical decisions, and business-facing outcomes.
               </p>
             </div>
 
@@ -223,15 +221,6 @@ export default function Projects() {
               <PanelTopbar title={active.filename} />
 
               <div className="flex flex-col gap-4 p-4 sm:gap-5 md:gap-6 md:p-7">
-                <div className="rounded-[16px] border px-4 py-3 md:hidden" style={{ borderColor: 'var(--line)', background: 'var(--surface-chip)' }}>
-                  <span className="font-mono-base text-[0.74rem] uppercase tracking-[0.05em]" style={{ color: 'var(--accent)' }}>
-                    selected project
-                  </span>
-                  <p className="mt-1 text-[0.92rem] font-semibold leading-6" style={{ color: 'var(--text)' }}>
-                    {active.title}
-                  </p>
-                </div>
-
                 <header className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
                   <div className="min-w-0">
                     <div className="font-mono-base mb-2 text-[0.82rem] uppercase tracking-[0.05em]" style={{ color: 'var(--text-dim)' }}>
@@ -253,34 +242,66 @@ export default function Projects() {
                   </span>
                 </header>
 
-                <div className="rounded-[18px] border p-4 md:p-5" style={{ borderColor: 'var(--line)', background: 'var(--surface-ghost)' }}>
-                  <div className="flex flex-col gap-3">
-                    <div className="flex flex-col gap-1 sm:flex-row sm:items-center sm:justify-between sm:gap-3">
-                      <span className="font-mono-base text-[0.82rem] uppercase tracking-[0.05em]" style={{ color: 'var(--accent)' }}>
-                        project visual
-                      </span>
-                      <span className="font-mono-base text-[0.78rem] uppercase tracking-[0.04em]" style={{ color: 'var(--text-dim)' }}>
-                        assets-ready
-                      </span>
-                    </div>
-
-                    <div
-                      className="flex min-h-[140px] items-end rounded-[14px] border p-4 sm:min-h-[180px] md:min-h-[220px]"
-                      style={{
-                        borderColor: 'var(--line)',
-                        background: 'linear-gradient(145deg, rgba(94, 160, 255, 0.14), rgba(124, 224, 195, 0.08))',
-                      }}
-                    >
-                      <div className="max-w-[28ch]">
-                        <span className="font-mono-base text-[0.82rem] uppercase tracking-[0.05em]" style={{ color: 'var(--text-dim)' }}>
-                          future image slot
+                <div className="grid gap-4 xl:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)]">
+                  <div className="rounded-[18px] border p-4 md:p-5" style={{ borderColor: 'var(--line)', background: 'var(--surface-ghost)' }}>
+                    <div className="flex flex-col gap-4">
+                      <div className="flex flex-col gap-1">
+                        <span className="font-mono-base text-[0.82rem] uppercase tracking-[0.05em]" style={{ color: 'var(--accent)' }}>
+                          project system view
                         </span>
-                        <p className="mt-2 text-[0.9rem] leading-7" style={{ color: 'var(--text-soft)' }}>
-                          When you add project screenshots or mockups inside `assets`, this area can become the main visual preview for each case study.
+                        <h3 className="text-[1.08rem] font-semibold" style={{ color: 'var(--text)' }}>
+                          {active.visualTitle}
+                        </h3>
+                        <p className="text-[0.9rem] leading-7" style={{ color: 'var(--text-soft)' }}>
+                          {active.visualSummary}
                         </p>
+                      </div>
+
+                      <div className="grid gap-3 sm:grid-cols-3">
+                        {active.visualStats.map((stat) => (
+                          <div key={stat.label} className="rounded-[14px] border px-4 py-4" style={{ borderColor: 'var(--line)', background: 'var(--surface-chip)' }}>
+                            <span className="font-mono-base text-[0.72rem] uppercase tracking-[0.05em]" style={{ color: 'var(--text-dim)' }}>
+                              {stat.label}
+                            </span>
+                            <p className="mt-2 text-[1.15rem] font-semibold tracking-[-0.03em]" style={{ color: 'var(--text)' }}>
+                              {stat.value}
+                            </p>
+                          </div>
+                        ))}
+                      </div>
+
+                      <div className="grid gap-3 md:grid-cols-3">
+                        {active.visualFlow.map((step) => (
+                          <div key={`${step.from}-${step.to}`} className="rounded-[14px] border p-4" style={{ borderColor: 'var(--line)', background: 'linear-gradient(145deg, rgba(94, 160, 255, 0.12), rgba(124, 224, 195, 0.08))' }}>
+                            <span className="font-mono-base text-[0.72rem] uppercase tracking-[0.05em]" style={{ color: 'var(--text-dim)' }}>
+                              {step.from}
+                            </span>
+                            <p className="mt-3 text-[0.96rem] font-semibold leading-6" style={{ color: 'var(--text)' }}>
+                              {step.to}
+                            </p>
+                          </div>
+                        ))}
                       </div>
                     </div>
                   </div>
+
+                  <aside className="rounded-[18px] border p-4 md:p-5" style={{ borderColor: 'var(--line)', background: 'var(--surface-muted)' }}>
+                    <div className="flex flex-col gap-3">
+                      <span className="font-mono-base text-[0.82rem] uppercase tracking-[0.05em]" style={{ color: 'var(--accent)' }}>
+                        recruiter snapshot
+                      </span>
+                      {active.recruiterSnapshot.map((item) => (
+                        <div key={item.label} className="border-b pb-3 last:border-b-0 last:pb-0" style={{ borderColor: 'var(--line)' }}>
+                          <div className="font-mono-base text-[0.72rem] uppercase tracking-[0.05em]" style={{ color: 'var(--text-dim)' }}>
+                            {item.label}
+                          </div>
+                          <p className="mt-1 text-[0.9rem] leading-7" style={{ color: 'var(--text-soft)' }}>
+                            {item.value}
+                          </p>
+                        </div>
+                      ))}
+                    </div>
+                  </aside>
                 </div>
 
                 <p
